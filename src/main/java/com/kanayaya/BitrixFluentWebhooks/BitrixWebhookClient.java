@@ -1,6 +1,9 @@
 package com.kanayaya.BitrixFluentWebhooks;
 
-public interface BitrixWebhookClient {
-    String host();
-    String token();
+public abstract class BitrixWebhookClient {
+    public abstract String host();
+    protected abstract String token();
+
+
+
 }
