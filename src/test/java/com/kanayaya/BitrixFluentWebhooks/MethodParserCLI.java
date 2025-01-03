@@ -73,12 +73,12 @@ public class MethodParserCLI {
         System.out.println("farewell");
     }
 
-    private static class Method {
+    static class Method {
         private final String name;
         private final String description;
         private final Map<String, String> params;
 
-        private Method(String name, String description, Map<String, String> params) {
+        public Method(String name, String description, Map<String, String> params) {
             this.name = name;
             this.description = description;
             this.params = params;
