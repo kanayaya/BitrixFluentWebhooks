@@ -57,6 +57,7 @@ public class IMMethodParser {
 
             count++;
             System.out.println("Done " + count + "/" + lines);
+            if (count == lines) break;
             url = scanner.nextLine();
         }
     }
@@ -83,7 +84,7 @@ public class IMMethodParser {
             String revision = param.children().get(4).text();
             String required = param.children().get(2).text();
 
-            result.put(name, description + ". <b>Обязательный: </b>" + required + ". <b>Пример:</b> {@code " + example + "}. <b>С ревизии:</b> " + revision);
+            result.put(name, description + ". <em>Обязательный: </em>" + required + ". <em>Пример:</em> {@code " + example + "}. <em>С ревизии:</em> " + revision);
         }
         return result.isEmpty()? null : result;
     }

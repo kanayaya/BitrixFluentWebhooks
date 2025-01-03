@@ -85,8 +85,8 @@ public class MethodParserCLI {
         }
         public String toEnumString() {
             String javadoc = "/** " + description + "<br>\n" +
-                    (params == null? "" : ("* Параметры:<br>\n")) +
-                    (params == null? "" : "* " + (params.entrySet().stream().map(e -> "{@code " + e.getKey() + "} - " + e.getValue()).collect(Collectors.joining("<br>\n* "))) + "<br>\n") +
+                    (params == null? "" : ("* Параметры:<br>\n* <ul>\n")) +
+                    (params == null? "" : "* " + (params.entrySet().stream().map(e -> "<li><b>{@code " + e.getKey() + "}</b> - " + e.getValue() + "</li>").collect(Collectors.joining("\n* "))) + "\n* </ul>\n") +
                     "*/\n";
             String body = name.trim().toUpperCase().replace('.', '_').replace("*", "ANY") + "(\"" + name + "\"),\n";
             return (javadoc.length() < 13? "" : javadoc) + body;
@@ -131,9 +131,9 @@ public class MethodParserCLI {
                                 (typeCode < 0 || parameter.children().size() <= typeCode? "" : ": " + parameter.children().get(typeCode).text()),
                         parameter.children().get(descriptionCode).text() +
                                 (sinceCode > 0 && parameter.children().size() > sinceCode && ! parameter.children().get(sinceCode).text().trim().isEmpty()?
-                                        ", с версии " + parameter.children().get(sinceCode).text() : "") +
+                                        ". <em>С версии:</em> " + parameter.children().get(sinceCode).text() : "") +
                                 (requiredCode > 0 && parameter.children().size() > requiredCode && ! parameter.children().get(requiredCode).text().trim().isEmpty()?
-                                        ", обязательный: " + parameter.children().get(requiredCode).text() : ""
+                                        ". <em>Обязательный:</em> " + parameter.children().get(requiredCode).text() : ""
                                 ));
             }
         } catch (Exception e) {
