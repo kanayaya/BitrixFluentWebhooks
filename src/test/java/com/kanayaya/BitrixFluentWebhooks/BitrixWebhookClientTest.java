@@ -20,12 +20,16 @@ class BitrixWebhookClientTest {
 
         @Override
         public String host() {
-            return "http://localhost";
+            return "http://127.0.0.1";
         }
 
         @Override
         protected String token() {
             return token;
+        }
+        @Override
+        protected Long userId() {
+            return 1L;
         }
     };
 
@@ -33,6 +37,10 @@ class BitrixWebhookClientTest {
     public void testCreation() {
         assertEquals(TEST_CLIENT.host(), "localhost");
         assertNotNull(TEST_CLIENT.token());
+    }
+    @Test
+    public void testGet() {
+        System.out.println(TEST_CLIENT.getUsersString("мин"));
     }
 
 }

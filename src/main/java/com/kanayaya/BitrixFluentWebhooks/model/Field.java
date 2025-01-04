@@ -15,4 +15,14 @@ public class Field<TABLE extends Table, VALUE> {
     public Field(String name, Function<String, VALUE> deserializer) {
         this(name, Object::toString, deserializer);
     }
+
+    public String getName() {
+        return name;
+    }
+    public String serialize(VALUE value) {
+        return serializer.apply(value);
+    }
+    public VALUE deserialize(String s) {
+        return deserializer.apply(s);
+    }
 }

@@ -8746,7 +8746,7 @@ public enum Method {
      *
      * @return Имя метода + ".json"
      */
-    String jsonName() {
+    public String jsonName() {
         return name + ".json";
     }
 }
