@@ -23,10 +23,9 @@ public abstract class BitrixWebhookClient {
 
         try {
             HttpClient client = HttpClient.newHttpClient();
-            System.out.println(client.send(HttpRequest.newBuilder().uri(new URI("http://localhost/rest/1/9q8lzi36i7cb8tk5/user.get.json/?%25NAME=%D0%BC%D0%B8%D0%BD")).GET().build(), HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8)).body());
             HttpResponse<String> response = client.send(request.inner(), HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
             return response.body();
-        } catch (IOException | InterruptedException | URISyntaxException e) {
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }

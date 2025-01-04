@@ -20,7 +20,7 @@ class BitrixWebhookClientTest {
 
         @Override
         public String host() {
-            return "http://127.0.0.1";
+            return "http://localhost";
         }
 
         @Override
