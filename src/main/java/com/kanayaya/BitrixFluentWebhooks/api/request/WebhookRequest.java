@@ -1,6 +1,8 @@
 package com.kanayaya.BitrixFluentWebhooks.api.request;
 
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -10,6 +12,7 @@ import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -18,14 +21,16 @@ import java.util.stream.Collectors;
 public class WebhookRequest extends HttpRequest {
     private final HttpRequest inner;
 
-    public WebhookRequest(String host, String token, Long userId, Method restMethod, List<Map.Entry<String, String>> params) {
-        String paramsString = params.stream().map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
-                .collect(Collectors.joining("&"));
-        String modifiedHost = host.startsWith("http") ? host : "https://" + host;
-        String uriString = modifiedHost + (modifiedHost.endsWith("/")? "rest/" : "/rest/") + userId + "/" + token + "/" + restMethod.jsonName() + "/?" + paramsString;
+    public WebhookRequest(@NotNull String host, @NotNull String token, @NotNull Long userId, @NotNull Method restMethod) {
+        this(host, token, userId, restMethod, null);
+    }
+    public WebhookRequest(@NotNull String host, @NotNull String token, @NotNull Long userId, @NotNull Method restMethod, @Nullable List<Map.Entry<String, String>> params) {
+        this(makeUri(host, token, userId, restMethod, params));
+    }
+    private WebhookRequest(String fullUrl) {
         URI uri;
         try {
-            uri = new URI(uriString);
+            uri = new URI(fullUrl);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -33,6 +38,20 @@ public class WebhookRequest extends HttpRequest {
                 .uri(uri)
                 .GET()
                 .build();
+    }
+    private static @NotNull String makeUri(@NotNull String host, @NotNull String token, @NotNull Long userId, @NotNull Method restMethod, @Nullable List<Map.Entry<String, String>> params) {
+        String paramsString = Optional.ofNullable(params)
+                .stream()
+                .flatMap(Collection::stream)
+                .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+                .collect(Collectors.joining("&", "?", ""));
+        String modifiedHost = host.startsWith("http") ? host : "https://" + host;
+        return modifiedHost +
+                (modifiedHost.endsWith("/")? "rest/" : "/rest/") +
+                userId + "/" +
+                token + "/" +
+                restMethod.jsonName() + "/" +
+                (paramsString.length() < 2? "" : paramsString);
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BitrixWebhookClientTest {
+public class BitrixWebhookClientTest {
     public static final BitrixWebhookClient TEST_CLIENT = new BitrixWebhookClient() {
         private final String token;
 
@@ -24,11 +24,11 @@ class BitrixWebhookClientTest {
         }
 
         @Override
-        protected String token() {
-            return token;
+        public TokenSecret token() {
+            return new TokenSecret(token);
         }
         @Override
-        protected Long userId() {
+        public Long userId() {
             return 1L;
         }
     };
