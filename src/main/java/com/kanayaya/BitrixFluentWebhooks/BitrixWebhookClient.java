@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 
 public interface BitrixWebhookClient {
     String host();
@@ -27,5 +29,19 @@ public interface BitrixWebhookClient {
         }
     }
 
+    default String invoke(Method method) {
+        return invoke(method, null);
+    }
+    default String invoke(Method method, List<Map.Entry<String, String>> params) {
+        WebhookRequest request = new WebhookRequest(host(), token().token(), userId(), method, params);
+
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpResponse<String> response = client.send(request.inner(), HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
+            return response.body();
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
