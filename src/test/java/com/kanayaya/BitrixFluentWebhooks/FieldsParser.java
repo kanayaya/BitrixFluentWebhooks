@@ -77,7 +77,7 @@ public class FieldsParser {
     @Test
     public void userFields() throws JsonProcessingException {
         String fields = mapper.readTree(TEST_CLIENT.invoke(Method.USER_FIELDS)).toPrettyString();
-        String user = mapper.readTree(TEST_CLIENT.invoke(Method.USER_GET, new MutableFilter<User>().field(User.ID).eq(4).getParams())).toPrettyString();
+        String user = mapper.readTree(TEST_CLIENT.invoke(Method.USER_GET, Map.of("FILTER", new MutableFilter<User>().field(User.ID).eq(1).getParams(), "ADMIN_MODE", true))).toPrettyString();
 
 
 

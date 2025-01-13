@@ -1,5 +1,8 @@
 package com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
@@ -18,6 +21,14 @@ public class SerializerUtils {
     public static final Function<LocalDate, String> DATE_SERIALIZER = DateTimeFormatter.ISO_DATE::format;
     public static final Function<LocalDateTime, String> DATE_TIME_SERIALIZER = DateTimeFormatter.ISO_DATE_TIME::format;
     public static final Function<OffsetDateTime, String> OFFSET_DATE_TIME_SERIALIZER = DateTimeFormatter.ISO_OFFSET_DATE_TIME::format;
+    public static final Function<String, String[]> ARRAY_DESERIALIZER = s-> {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.readValue(s, String[].class);
+        } catch (JsonProcessingException e) {
+            throw new IllegalArgumentException("violates json array processing rules: " + s, e);
+        }
+    };
 
 
 }

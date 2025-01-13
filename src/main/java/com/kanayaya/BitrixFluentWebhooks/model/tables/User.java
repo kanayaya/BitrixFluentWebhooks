@@ -54,7 +54,8 @@ public class User extends Table {
 //    public static final Field<User, > WORK_PROFILE;
 //    public static final Field<User, > WORK_LOGO;
 //    public static final Field<User, > WORK_NOTES;
-//    public static final Field<User, > UF_DEPARTMENT;
+    public static final MultipleField<User, Integer, Field<User, Integer>> UF_DEPARTMENT =
+        new MultipleField<>("UF_DEPARTMENT", new Field<>("UF_DEPARTMENT", INTEGER_DESERIALIZER));
 //    public static final Field<User, > UF_PHONE_INNER;
 //    public static final Field<User, > NAME_SEARCH;
 //    public static final Field<User, > USER_TYPE;

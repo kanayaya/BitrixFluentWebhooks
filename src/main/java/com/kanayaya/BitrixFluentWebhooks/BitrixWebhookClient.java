@@ -25,7 +25,7 @@ public interface BitrixWebhookClient {
         return invoke(method, null);
     }
     default String invoke(Method method, Map<String, Object> params) {
-        WebhookJsonRequest request = new WebhookJsonRequest(host(), token().token(), userId(), method, params);
+        WebhookPathRequest request = new WebhookPathRequest(host(), token().token(), userId(), method, params);
         System.out.println(request);
 
         try {

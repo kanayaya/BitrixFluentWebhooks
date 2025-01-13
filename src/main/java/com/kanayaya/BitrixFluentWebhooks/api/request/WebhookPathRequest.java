@@ -56,7 +56,7 @@ public class WebhookPathRequest extends HttpRequest {
 
     @Override
     public String method() {
-        return null;
+        return inner.method();
     }
 
     @Override
@@ -84,7 +84,8 @@ public class WebhookPathRequest extends HttpRequest {
         return inner.headers();
     }
 
-    public HttpRequest inner() {
-        return inner;
+    @Override
+    public String toString() {
+        return inner.toString();
     }
 }
