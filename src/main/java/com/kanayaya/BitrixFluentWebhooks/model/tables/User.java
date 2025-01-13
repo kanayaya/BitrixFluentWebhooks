@@ -2,15 +2,16 @@ package com.kanayaya.BitrixFluentWebhooks.model.tables;
 
 import com.kanayaya.BitrixFluentWebhooks.model.Field;
 import com.kanayaya.BitrixFluentWebhooks.model.Table;
-import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.BooleanField;
-import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.StringField;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.*;
+
+import java.time.OffsetDateTime;
 
 import static com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.SerializerUtils.*;
 
 public class User extends Table {
     public static final Field<User, Integer> ID = new Field<>("ID", INTEGER_DESERIALIZER);
-//    public static final Field<User, > XML_ID;
-//    public static final Field<User, > ACTIVE;
+    public static final StringField<User> XML_ID = new StringField<>("XML_ID");
+    public static final BooleanField<User> ACTIVE = new BooleanField<>("ACTIVE");
     public static final StringField<User> NAME = new StringField<>("NAME");
     public static final StringField<User> LAST_NAME = new StringField<>("LAST_NAME");
     public static final StringField<User> SECOND_NAME = new StringField<>("SECOND_NAME");
@@ -20,12 +21,12 @@ public class User extends Table {
 //    public static final Field<User, > WORK_PHONE;
 //    public static final Field<User, > WORK_POSITION;
 //    public static final Field<User, > WORK_COMPANY;
-    public static final Field<User, Boolean> IS_ONLINE = new BooleanField<>("IS_ONLINE");
+    public static final YNField<User> IS_ONLINE = new YNField<>("IS_ONLINE");
 //    public static final Field<User, > TIME_ZONE;
 //    public static final Field<User, > TIMESTAMP_X;
 //    public static final Field<User, > IME_ZONE_OFFSET;
-//    public static final Field<User, > DATE_REGISTER;
-//    public static final Field<User, > LAST_ACTIVITY_DATE;
+    public static final Field<User, OffsetDateTime> DATE_REGISTER = new DateField<>("DATE_REGISTER", DateField.DateLevel.OFFSET_DATE_TIME_LEVEL);
+    public static final Field<User, OffsetDateTime> LAST_ACTIVITY_DATE = new DateField<>("LAST_ACTIVITY_DATE", DateField.DateLevel.OFFSET_DATE_TIME_LEVEL);
 //    public static final Field<User, > PERSONAL_PROFESSION;
 //    public static final Field<User, > PERSONAL_GENDER;
 //    public static final Field<User, > PERSONAL_BIRTHDAY;
@@ -38,7 +39,7 @@ public class User extends Table {
 //    public static final Field<User, > PERSONAL_CITY;
 //    public static final Field<User, > PERSONAL_STATE;
 //    public static final Field<User, > PERSONAL_ZIP;
-//    public static final Field<User, > PERSONAL_COUNTRY;
+    public static final CountryField<User> PERSONAL_COUNTRY = new CountryField<>("PERSONAL_COUNTRY");
 //    public static final Field<User, > PERSONAL_NOTES;
 //    public static final Field<User, > WORK_DEPARTMENT;
 //    public static final Field<User, > WORK_WWW;
@@ -49,7 +50,7 @@ public class User extends Table {
 //    public static final Field<User, > WORK_CITY;
 //    public static final Field<User, > WORK_STATE;
 //    public static final Field<User, > WORK_ZIP;
-//    public static final Field<User, > WORK_COUNTRY;
+    public static final CountryField<User> WORK_COUNTRY = new CountryField<>("WORK_COUNTRY");
 //    public static final Field<User, > WORK_PROFILE;
 //    public static final Field<User, > WORK_LOGO;
 //    public static final Field<User, > WORK_NOTES;

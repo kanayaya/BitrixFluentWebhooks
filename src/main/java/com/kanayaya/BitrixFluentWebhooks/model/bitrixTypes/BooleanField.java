@@ -8,6 +8,6 @@ import static com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.SerializerUtil
 
 public class BooleanField<TABLE extends Table> extends Field<TABLE, Boolean> {
     public BooleanField(String name) {
-        super(name, BOOLEAN_SERIALIZER, BOOLEAN_DESERIALIZER);
+        super(name, b->b, BOOLEAN_DESERIALIZER);
     }
 }

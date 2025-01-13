@@ -1,5 +1,6 @@
 package com.kanayaya.BitrixFluentWebhooks.api.request;
 
+import com.kanayaya.BitrixFluentWebhooks.api.request.filter.Filter;
 import com.kanayaya.BitrixFluentWebhooks.model.Field;
 import com.kanayaya.BitrixFluentWebhooks.model.Table;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.StringField;
@@ -9,11 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
-public class PathFilterBuilder <TABLE extends Table> {
-    private final List<Map.Entry<String, String>> params = new ArrayList<>();
+public class MutableFilter<TABLE extends Table> implements Filter {
+    private final Map<String, Object> params = new HashMap<>();
 
     public <VALUE> ValueStep<TABLE, VALUE> field(Field<TABLE, VALUE> field) {
         return (ValueStepInner<TABLE, VALUE>) (biConsumer) -> {
@@ -27,22 +26,36 @@ public class PathFilterBuilder <TABLE extends Table> {
             return this;
         };
     }
-    public List<Map.Entry<String, String>> getParameters() {
-        return new ArrayList<>(params);
+
+    @Override
+    public Map<String, Object> getParams() {
+        return new HashMap<>(params);
     }
 
     @FunctionalInterface
     private interface ValueStepInner<TABLE extends Table, VALUE> extends ValueStep<TABLE, VALUE> {
-        PathFilterBuilder<TABLE> filter(BiConsumer<Field<TABLE, VALUE>, List<Map.Entry<String, String>>> modifier);
+        MutableFilter<TABLE> filter(BiConsumer<Field<TABLE, VALUE>, Map<String, Object>> modifier);
 
         @Override
-        default PathFilterBuilder<TABLE> eq(VALUE value) {
-            return filter((field, list) -> list.add(newEntry("=" + field.getName(), field.serialize(value))));
+        default MutableFilter<TABLE> eq(VALUE value) {
+            return filter((field, paramsMap) -> paramsMap.put("=" + field.getName(), field.serialize(value)));
+        }
+        @Override
+        default MutableFilter<TABLE> in(Iterable<VALUE> value) {
+
+            return filter((field, paramsMap) -> {
+                List<Object> serialized = new ArrayList<>();
+                for (VALUE v :
+                        value) {
+                    serialized.add(field.serialize(v));
+                }
+                paramsMap.put(field.getName(), serialized);
+            });
         }
     }
     public interface ValueStep<TABLE extends Table, VALUE> {
-        PathFilterBuilder<TABLE> eq(VALUE value);
-//        PathFilterBuilder<TABLE> in(Iterable<VALUE> value);
+        MutableFilter<TABLE> eq(VALUE value);
+        MutableFilter<TABLE> in(Iterable<VALUE> value);
 //        PathFilterBuilder<TABLE> not(VALUE value);
 //        PathFilterBuilder<TABLE> gt(VALUE value);
 //        PathFilterBuilder<TABLE> lt(VALUE value);
@@ -54,12 +67,12 @@ public class PathFilterBuilder <TABLE extends Table> {
     @FunctionalInterface
     private interface ValueStringStepInner<TABLE extends Table> extends ValueStringStep<TABLE>, ValueStepInner<TABLE, String> {
         @Override
-        default PathFilterBuilder<TABLE> contains(String value) {
-            return filter((field, list) -> list.add(newEntry("%" + field.getName(), field.serialize(value))));
+        default MutableFilter<TABLE> contains(String value) {
+            return filter((field, paramsMap) -> paramsMap.put("%" + field.getName(), field.serialize(value)));
         }
     }
     public interface ValueStringStep<TABLE extends Table> extends ValueStep<TABLE, String> {
-        PathFilterBuilder<TABLE> contains(String value);
+        MutableFilter<TABLE> contains(String value);
     }
     private static Map.Entry<String, String> newEntry(String key, String value) {
         return new Map.Entry<>() {
