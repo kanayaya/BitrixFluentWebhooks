@@ -8749,4 +8749,7 @@ public enum Method {
     public String jsonName() {
         return name + ".json";
     }
+    public String getName() {
+        return name;
+    }
 }

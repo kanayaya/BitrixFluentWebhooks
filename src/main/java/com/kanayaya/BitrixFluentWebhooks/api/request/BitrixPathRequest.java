@@ -14,16 +14,16 @@ import java.time.Duration;
 import java.util.Map;
 import java.util.Optional;
 
-public class WebhookPathRequest extends HttpRequest {
+public class BitrixPathRequest extends HttpRequest {
     private final HttpRequest inner;
 
-    public WebhookPathRequest(@NotNull String host, @NotNull String token, @NotNull Long userId, @NotNull Method restMethod) {
+    public BitrixPathRequest(@NotNull String host, @NotNull String token, @NotNull Long userId, @NotNull Method restMethod) {
         this(host, token, userId, restMethod, null);
     }
-    public WebhookPathRequest(@NotNull String host, @NotNull String token, @NotNull Long userId, @NotNull Method restMethod, @Nullable Map<String, Object> params) {
+    public BitrixPathRequest(@NotNull String host, @NotNull String token, @NotNull Long userId, @NotNull Method restMethod, @Nullable Map<String, Object> params) {
         this(makeUri(host, token, userId, restMethod, params));
     }
-    private WebhookPathRequest(String fullUrl) {
+    private BitrixPathRequest(String fullUrl) {
         URI uri;
         try {
             uri = new URI(fullUrl);

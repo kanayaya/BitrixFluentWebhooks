@@ -40,7 +40,8 @@ public class BitrixWebhookClientTest {
     }
     @Test
     public void testGet() {
-        System.out.println(TEST_CLIENT.getUsersString("мин"));
+        System.out.println(TEST_CLIENT.getUsersString("мин").toPrettyString());
+        System.out.println(TEST_CLIENT.user().current());
     }
 
 }

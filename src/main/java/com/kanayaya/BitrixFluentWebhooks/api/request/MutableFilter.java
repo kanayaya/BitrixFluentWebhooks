@@ -52,17 +52,52 @@ public class MutableFilter<TABLE extends Table> implements Filter {
                 paramsMap.put(field.getName(), serialized);
             });
         }
+
+        @Override
+        default MutableFilter<TABLE> not(VALUE value) {
+            return filter((field, paramsMap) -> paramsMap.put("!" + field.getName(), field.serialize(value)));
+        }
+
+        @Override
+        default MutableFilter<TABLE> gt(VALUE value) {
+            return filter((field, paramsMap) -> paramsMap.put(">" + field.getName(), field.serialize(value)));
+        }
+
+        @Override
+        default MutableFilter<TABLE> lt(VALUE value) {
+            return filter((field, paramsMap) -> paramsMap.put("<" + field.getName(), field.serialize(value)));
+        }
+
+        @Override
+        default MutableFilter<TABLE> ge(VALUE value) {
+            return filter((field, paramsMap) -> paramsMap.put(">=" + field.getName(), field.serialize(value)));
+        }
+
+        @Override
+        default MutableFilter<TABLE> le(VALUE value) {
+            return filter((field, paramsMap) -> paramsMap.put("<=" + field.getName(), field.serialize(value)));
+        }
+
+        @Override
+        default MutableFilter<TABLE> btw(VALUE value) {
+            return filter((field, paramsMap) -> paramsMap.put("><" + field.getName(), field.serialize(value)));
+        }
+
+        @Override
+        default MutableFilter<TABLE> nbtw(VALUE value) {
+            return filter((field, paramsMap) -> paramsMap.put("!><" + field.getName(), field.serialize(value)));
+        }
     }
     public interface ValueStep<TABLE extends Table, VALUE> {
         MutableFilter<TABLE> eq(VALUE value);
-        MutableFilter<TABLE> in(Iterable<VALUE> value);
-//        PathFilterBuilder<TABLE> not(VALUE value);
-//        PathFilterBuilder<TABLE> gt(VALUE value);
-//        PathFilterBuilder<TABLE> lt(VALUE value);
-//        PathFilterBuilder<TABLE> ge(VALUE value);
-//        PathFilterBuilder<TABLE> le(VALUE value);
-//        PathFilterBuilder<TABLE> btw(VALUE value);
-//        PathFilterBuilder<TABLE> nbtw(VALUE value);
+        MutableFilter<TABLE> in(Iterable<VALUE> values);
+        MutableFilter<TABLE> not(VALUE value);
+        MutableFilter<TABLE> gt(VALUE value);
+        MutableFilter<TABLE> lt(VALUE value);
+        MutableFilter<TABLE> ge(VALUE value);
+        MutableFilter<TABLE> le(VALUE value);
+        MutableFilter<TABLE> btw(VALUE value);
+        MutableFilter<TABLE> nbtw(VALUE value);
     }
     @FunctionalInterface
     private interface ValueStringStepInner<TABLE extends Table> extends ValueStringStep<TABLE>, ValueStepInner<TABLE, String> {
@@ -70,9 +105,14 @@ public class MutableFilter<TABLE extends Table> implements Filter {
         default MutableFilter<TABLE> contains(String value) {
             return filter((field, paramsMap) -> paramsMap.put("%" + field.getName(), field.serialize(value)));
         }
+        @Override
+        default MutableFilter<TABLE> containsNo(String value) {
+            return filter((field, paramsMap) -> paramsMap.put("!%" + field.getName(), field.serialize(value)));
+        }
     }
     public interface ValueStringStep<TABLE extends Table> extends ValueStep<TABLE, String> {
         MutableFilter<TABLE> contains(String value);
+        MutableFilter<TABLE> containsNo(String value);
     }
     private static Map.Entry<String, String> newEntry(String key, String value) {
         return new Map.Entry<>() {

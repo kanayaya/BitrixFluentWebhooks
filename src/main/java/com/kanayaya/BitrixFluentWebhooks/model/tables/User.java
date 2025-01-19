@@ -25,7 +25,7 @@ public class User extends Table {
 //    public static final Field<User, > TIME_ZONE;
 //    public static final Field<User, > TIMESTAMP_X;
 //    public static final Field<User, > IME_ZONE_OFFSET;
-    public static final Field<User, OffsetDateTime> DATE_REGISTER = new DateField<>("DATE_REGISTER", DateField.DateLevel.OFFSET_DATE_TIME_LEVEL);
+    public static final DateField<User, OffsetDateTime> DATE_REGISTER = new DateField<>("DATE_REGISTER", DateField.DateLevel.OFFSET_DATE_TIME_LEVEL);
     public static final Field<User, OffsetDateTime> LAST_ACTIVITY_DATE = new DateField<>("LAST_ACTIVITY_DATE", DateField.DateLevel.OFFSET_DATE_TIME_LEVEL);
 //    public static final Field<User, > PERSONAL_PROFESSION;
 //    public static final Field<User, > PERSONAL_GENDER;
