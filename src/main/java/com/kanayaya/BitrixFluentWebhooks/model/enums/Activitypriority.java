@@ -2,9 +2,9 @@ package com.kanayaya.BitrixFluentWebhooks.model.enums;
 
 public enum Activitypriority {
     EMPTY(0, ""),
-    ACTIVITYPRIORITY_1(1, "низкая"),
-    ACTIVITYPRIORITY_2(2, "средняя"),
-    ACTIVITYPRIORITY_3(3, "высокая"),
+    LOW(1, "низкая"),
+    MEDIUM(2, "средняя"),
+    HIGH(3, "высокая"),
     ;
     private final int id;
     private final String name;

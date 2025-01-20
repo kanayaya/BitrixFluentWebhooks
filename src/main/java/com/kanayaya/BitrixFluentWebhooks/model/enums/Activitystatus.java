@@ -2,9 +2,9 @@ package com.kanayaya.BitrixFluentWebhooks.model.enums;
 
 public enum Activitystatus {
     ACTIVITYSTATUS_0(0, ""),
-    ACTIVITYSTATUS_1(1, "Ожидается"),
-    ACTIVITYSTATUS_2(2, "Завершено"),
-    ACTIVITYSTATUS_3(3, "Завершено автоматически"),
+    WAITING(1, "Ожидается"),
+    COMPLETED(2, "Завершено"),
+    COMPLETED_AUTOMATICALLY(3, "Завершено автоматически"),
     ;
     private final int id;
     private final String name;

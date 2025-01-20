@@ -1,8 +1,8 @@
 package com.kanayaya.BitrixFluentWebhooks.model.enums;
 
 public enum SettingsMode {
-    SETTINGSMODE_1(1, "Классическая CRM"),
-    SETTINGSMODE_2(2, "Простая CRM"),
+    CLASSIC(1, "Классическая CRM"),
+    SIMPLE(2, "Простая CRM"),
     ;
     private final int id;
     private final String name;
