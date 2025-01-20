@@ -1,7 +1,5 @@
 package com.kanayaya.BitrixFluentWebhooks.api.request;
 
-import com.kanayaya.BitrixFluentWebhooks.api.request.filter.UrlBodyMaker;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;

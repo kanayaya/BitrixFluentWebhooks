@@ -1,4 +1,4 @@
-package com.kanayaya.BitrixFluentWebhooks.api.request.filter;
+package com.kanayaya.BitrixFluentWebhooks.api.request;
 
 import com.kanayaya.BitrixFluentWebhooks.model.Table;
 

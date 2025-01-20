@@ -1,6 +1,7 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.UserEntity;
 
 public class FullUserEntity extends UserEntity implements FullEntity<FullUserEntity> {
@@ -9,7 +10,7 @@ public class FullUserEntity extends UserEntity implements FullEntity<FullUserEnt
     @JsonProperty("NAME")
     private String name;
     @Override
-    public FullUserEntity getFull() {
+    public FullUserEntity getFull(BitrixClient client) {
         return this;
     }
 }

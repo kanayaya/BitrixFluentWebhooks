@@ -6,7 +6,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
-import com.kanayaya.BitrixFluentWebhooks.api.request.MutableFilter;
+import com.kanayaya.BitrixFluentWebhooks.api.request.filter.Filter;
+import com.kanayaya.BitrixFluentWebhooks.api.request.filter.MutableFilter;
 import com.kanayaya.BitrixFluentWebhooks.exceptions.BitrixException;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullUserEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
@@ -15,6 +16,7 @@ import org.jetbrains.annotations.ApiStatus.Internal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 public class UserMethods extends RequestStorage {
     private final BitrixClient client;
@@ -55,8 +57,8 @@ public class UserMethods extends RequestStorage {
     public JsonNode fields() {
         return client.invoke(Method.USER_FIELDS).get("result");
     }
-    public GetUser get(MutableFilter<User> filter) {
-        params.putAll(filter.getParams());
+    public GetUser get(Function<Filter<User>, Filter<User>> filter) {
+        params.putAll(filter.apply(new MutableFilter<>()).getParams());
         return new GetUser();
     }
     @Internal

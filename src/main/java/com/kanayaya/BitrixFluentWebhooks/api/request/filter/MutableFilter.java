@@ -1,6 +1,5 @@
-package com.kanayaya.BitrixFluentWebhooks.api.request;
+package com.kanayaya.BitrixFluentWebhooks.api.request.filter;
 
-import com.kanayaya.BitrixFluentWebhooks.api.request.filter.Filter;
 import com.kanayaya.BitrixFluentWebhooks.model.Field;
 import com.kanayaya.BitrixFluentWebhooks.model.Table;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.StringField;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
-public class MutableFilter<TABLE extends Table> implements Filter {
+public class MutableFilter<TABLE extends Table> implements Filter<TABLE> {
     private final Map<String, Object> params = new HashMap<>();
 
     public <VALUE> ValueStep<TABLE, VALUE> field(Field<TABLE, VALUE> field) {
@@ -33,7 +32,7 @@ public class MutableFilter<TABLE extends Table> implements Filter {
     }
 
     @FunctionalInterface
-    private interface ValueStepInner<TABLE extends Table, VALUE> extends ValueStep<TABLE, VALUE> {
+    private interface ValueStepInner<TABLE extends Table, VALUE> extends Filter.ValueStep<TABLE, VALUE> {
         MutableFilter<TABLE> filter(BiConsumer<Field<TABLE, VALUE>, Map<String, Object>> modifier);
 
         @Override
@@ -88,19 +87,9 @@ public class MutableFilter<TABLE extends Table> implements Filter {
             return filter((field, paramsMap) -> paramsMap.put("!><" + field.getName(), field.serialize(value)));
         }
     }
-    public interface ValueStep<TABLE extends Table, VALUE> {
-        MutableFilter<TABLE> eq(VALUE value);
-        MutableFilter<TABLE> in(Iterable<VALUE> values);
-        MutableFilter<TABLE> not(VALUE value);
-        MutableFilter<TABLE> gt(VALUE value);
-        MutableFilter<TABLE> lt(VALUE value);
-        MutableFilter<TABLE> ge(VALUE value);
-        MutableFilter<TABLE> le(VALUE value);
-        MutableFilter<TABLE> btw(VALUE value);
-        MutableFilter<TABLE> nbtw(VALUE value);
-    }
+
     @FunctionalInterface
-    private interface ValueStringStepInner<TABLE extends Table> extends ValueStringStep<TABLE>, ValueStepInner<TABLE, String> {
+    private interface ValueStringStepInner<TABLE extends Table> extends Filter.ValueStringStep<TABLE>, ValueStepInner<TABLE, String> {
         @Override
         default MutableFilter<TABLE> contains(String value) {
             return filter((field, paramsMap) -> paramsMap.put("%" + field.getName(), field.serialize(value)));
@@ -109,10 +98,6 @@ public class MutableFilter<TABLE extends Table> implements Filter {
         default MutableFilter<TABLE> containsNo(String value) {
             return filter((field, paramsMap) -> paramsMap.put("!%" + field.getName(), field.serialize(value)));
         }
-    }
-    public interface ValueStringStep<TABLE extends Table> extends ValueStep<TABLE, String> {
-        MutableFilter<TABLE> contains(String value);
-        MutableFilter<TABLE> containsNo(String value);
     }
     private static Map.Entry<String, String> newEntry(String key, String value) {
         return new Map.Entry<>() {

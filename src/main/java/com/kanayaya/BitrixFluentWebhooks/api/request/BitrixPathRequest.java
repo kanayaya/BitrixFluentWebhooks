@@ -1,7 +1,6 @@
 package com.kanayaya.BitrixFluentWebhooks.api.request;
 
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
-import com.kanayaya.BitrixFluentWebhooks.api.request.filter.UrlBodyMaker;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

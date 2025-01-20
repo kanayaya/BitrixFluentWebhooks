@@ -2,7 +2,7 @@ package com.kanayaya.BitrixFluentWebhooks.session;
 
 import com.kanayaya.BitrixFluentWebhooks.BitrixSessionClient;
 import com.kanayaya.BitrixFluentWebhooks.BitrixWebhookClient;
-import com.kanayaya.BitrixFluentWebhooks.api.request.MutableFilter;
+import com.kanayaya.BitrixFluentWebhooks.api.request.filter.MutableFilter;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +41,7 @@ public class SessionTest {
         System.out.println(test.user().current());
 
 
-        System.out.println(admin.user().get(new MutableFilter<User>().field(User.NAME).contains("ст")).send());
-        System.out.println(test.user().get(new MutableFilter<User>().field(User.NAME).contains("ст")).send());
+        System.out.println(admin.user().get(filter -> filter.field(User.NAME).contains("ст")).send());
+        System.out.println(test.user().get(filter -> filter.field(User.NAME).contains("ст")).send());
     }
 }

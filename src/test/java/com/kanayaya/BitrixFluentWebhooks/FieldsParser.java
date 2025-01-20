@@ -5,10 +5,8 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
-import com.kanayaya.BitrixFluentWebhooks.api.request.MutableFilter;
-import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.StringField;
+import com.kanayaya.BitrixFluentWebhooks.api.request.filter.MutableFilter;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

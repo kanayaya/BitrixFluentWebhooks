@@ -1,8 +1,9 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.idable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kanayaya.BitrixFluentWebhooks.BitrixWebhookClient;
+import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullUserEntity;
+import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
 
 public class UserEntity implements Entity<FullUserEntity> {
     @JsonProperty("ID")
@@ -19,12 +20,12 @@ public class UserEntity implements Entity<FullUserEntity> {
     }
 
     @Override
-    public boolean delete(BitrixWebhookClient client) {
+    public boolean delete(BitrixClient client) {
         return false;
     }
 
     @Override
-    public FullUserEntity getFull() {
-        return null;
+    public FullUserEntity getFull(BitrixClient client) {
+        return client.user().get(filter -> filter.field(User.ID).eq(getId())).send().get(0);
     }
 }

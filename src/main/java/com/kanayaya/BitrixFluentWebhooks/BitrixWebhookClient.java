@@ -2,7 +2,7 @@ package com.kanayaya.BitrixFluentWebhooks;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
-import com.kanayaya.BitrixFluentWebhooks.api.request.MutableFilter;
+import com.kanayaya.BitrixFluentWebhooks.api.request.filter.MutableFilter;
 import com.kanayaya.BitrixFluentWebhooks.api.request.BitrixPathRequest;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
 
