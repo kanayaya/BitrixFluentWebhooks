@@ -1,5 +1,9 @@
 package com.kanayaya.BitrixFluentWebhooks.model.enums;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public enum Ownertype {
     LEAD(1, "Лид", "LEAD", "L"),
     DEAL(2, "Сделка", "DEAL", "D"),
@@ -22,6 +26,26 @@ public enum Ownertype {
         this.name = name;
         this.symbolCode = symbolCode;
         this.symbolCodeShort = symbolCodeShort;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSymbolCode() {
+        return symbolCode;
+    }
+
+    public String getSymbolCodeShort() {
+        return symbolCodeShort;
+    }
+
+    private static final Map<Integer, Ownertype> byId = Arrays.stream(values()).collect(Collectors.toMap(a -> a.id, a->a));
+    public static Ownertype getById(Integer id) {
+        return byId.get(id);
     }
 }
 
