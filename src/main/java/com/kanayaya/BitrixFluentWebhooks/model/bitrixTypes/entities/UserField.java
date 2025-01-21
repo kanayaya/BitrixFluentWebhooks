@@ -1,4 +1,4 @@
-package com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes;
+package com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities;
 
 import com.kanayaya.BitrixFluentWebhooks.model.Field;
 import com.kanayaya.BitrixFluentWebhooks.model.Table;

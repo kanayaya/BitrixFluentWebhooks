@@ -3,6 +3,8 @@ package com.kanayaya.BitrixFluentWebhooks.model.tables;
 import com.kanayaya.BitrixFluentWebhooks.model.Field;
 import com.kanayaya.BitrixFluentWebhooks.model.Table;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.*;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.CountryField;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.YNField;
 
 import java.time.OffsetDateTime;
 
