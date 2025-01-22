@@ -3720,7 +3720,7 @@ public enum Method {
      * <li><b>{@code rights}</b> - Необязательный, по умолчанию пустой массив. Массив прав доступа на загружаемый файл.</li>
      * <li><b>{@code generateUniqueName}</b> - Необязательный, по умолчанию false. При указании true, для загружаемого файла будет уникализировано имя, добавлением суффикса (1), (2) Пример: avatar (1).jpg avatar (2).jpg и т.п.</li>
      * <li><b>{@code id}</b> - Идентификатор папки. В текущем API загружать файл по пути к папке невозможно. Необходимо обязательно вычислить ID папки.</li>
-     * <li><b>{@code fileContent}</b> - Аналогично 'DETAIL_PICTURE' в примере Обработка файлов.</li>
+     * <li><b>{@code fileContent}</b> - Аналогично 'DETAIL_PICTURE' в примере <a href="https://apidocs.bitrix24.ru/api-reference/bx24-js-sdk/how-to-call-rest-methods/files.html">Обработка файлов</a>.</li>
      * </ul>
      */
     DISK_FOLDER_UPLOADFILE("disk.folder.uploadfile"),
@@ -3813,7 +3813,7 @@ public enum Method {
      * Параметры:<br>
      * <ul>
      * <li><b>{@code id}</b> - Идентификатор файла.</li>
-     * <li><b>{@code fileContent}</b> - Аналогично 'DETAIL_PICTURE' в примере Обработка файлов.</li>
+     * <li><b>{@code fileContent}</b> - Аналогично 'DETAIL_PICTURE' в примере <a href="https://apidocs.bitrix24.ru/api-reference/bx24-js-sdk/how-to-call-rest-methods/files.html">Обработка файлов</a>.</li>
      * </ul>
      */
     DISK_FILE_UPLOADVERSION("disk.file.uploadversion"),
@@ -3895,7 +3895,7 @@ public enum Method {
      * <li><b>{@code rights}</b> - Необязательный, по умолчанию пустой массив. Массив прав доступа на загружаемый файл.</li>
      * <li><b>{@code generateUniqueName}</b> - Необязательный, по умолчанию false. При указании true, для загружаемого файла будет уникализировано имя, добавлением суффикса (1), (2) Пример: avatar (1).jpg avatar (2).jpg и т.п.</li>
      * <li><b>{@code id}</b> - Идентификатор хранилища.</li>
-     * <li><b>{@code fileContent}</b> - Аналогично 'DETAIL_PICTURE' в примере Обработка файлов.</li>
+     * <li><b>{@code fileContent}</b> - Аналогично 'DETAIL_PICTURE' в примере <a href="https://apidocs.bitrix24.ru/api-reference/bx24-js-sdk/how-to-call-rest-methods/files.html">Обработка файлов</a>.</li>
      * </ul>
      */
     DISK_STORAGE_UPLOADFILE("disk.storage.uploadfile"),
