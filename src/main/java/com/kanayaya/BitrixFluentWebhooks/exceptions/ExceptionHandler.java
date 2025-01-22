@@ -16,6 +16,6 @@ public class ExceptionHandler {
         }
         String errorKey = response.get("error").asText();
         String errorDescription = response.has("error_description")? response.get("error_description").asText() : "";
-        throw exceptions.getOrDefault(errorKey, BitrixException::new).apply(errorKey + ": " + errorDescription);
+        throw exceptions.getOrDefault(errorKey, BitrixException::new).apply(errorKey + (errorDescription.isEmpty()? ": " + errorDescription : ""));
     }
 }
