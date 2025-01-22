@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
 import com.kanayaya.BitrixFluentWebhooks.api.methods.UserMethods;
+import com.kanayaya.BitrixFluentWebhooks.exceptions.ExceptionHandler;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -24,7 +25,9 @@ public interface BitrixClient {
         try {
             HttpClient client = client();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
-            return new ObjectMapper().readTree(response.body());
+            JsonNode responseBody = new ObjectMapper().readTree(response.body());
+            ExceptionHandler.handleResponse(responseBody);
+            return responseBody;
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }

@@ -97,7 +97,7 @@ public interface BitrixSessionClient extends BitrixClient {
             }, () -> System.out.println("No refresh provided for " + login));
         }
         public HttpRequest prepareRequest(Method method, Map<String, Object> params) {
-            params = params == null? new HashMap<>() : params;
+            params = params == null? new HashMap<>() : new HashMap<>(params);
             URI uri;
             try {
                 uri = new URI(host + "rest/" + method.jsonName() + '/');
