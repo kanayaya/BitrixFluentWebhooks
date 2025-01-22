@@ -1,0 +1,13 @@
+package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.%sEntity;
+
+public class Full%sEntity extends %sEntity implements FullEntity<Full%sEntity> {
+%s
+    @Override
+    public Full%sEntity getFull(BitrixClient client) {
+        return this;
+    }
+}

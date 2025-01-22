@@ -1,0 +1,31 @@
+package com.kanayaya.BitrixFluentWebhooks.model.pojo.idable;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.Full%sEntity;
+import com.kanayaya.BitrixFluentWebhooks.model.tables.%s;
+
+public class %sEntity implements Entity<Full%sEntity> {
+    @JsonProperty("ID")
+    private int id;
+    public %sEntity() {
+
+    }
+    public %sEntity(int id) {
+        this.id = id;
+    }
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public boolean delete(BitrixClient client) {
+        return false;
+    }
+
+    @Override
+    public Full%sEntity getFull(BitrixClient client) {
+        return null;
+    }
+}
