@@ -2,6 +2,7 @@ package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.Timeman;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.Country;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.YN;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.UserEntity;
@@ -26,10 +27,14 @@ public class FullUserEntity extends UserEntity implements FullEntity<FullUserEnt
     private String email;
     @JsonProperty("LAST_LOGIN")
     private OffsetDateTime last_login;
+    @JsonProperty("LAST_ACTIVITY_DATE")
+    private OffsetDateTime lastActivityDate;
     @JsonProperty("DATE_REGISTER")
     private OffsetDateTime date_register;
     @JsonProperty("TIME_ZONE")
     private String time_zone;
+    @JsonProperty("TIME_ZONE_OFFSET")
+    private Integer timeZoneOffset;
     @JsonProperty("IS_ONLINE")
     private YN is_online;
     @JsonProperty("TIMESTAMP_X")
@@ -99,7 +104,7 @@ public class FullUserEntity extends UserEntity implements FullEntity<FullUserEnt
     @JsonProperty("UF_EMPLOYMENT_DATE")
     private OffsetDateTime uf_employment_date;
     @JsonProperty("UF_TIMEMAN")
-    private String uf_timeman;
+    private Timeman uf_timeman;
     @JsonProperty("UF_DEPARTMENT")
     private List<Integer> ufDepartment;
     @JsonProperty("UF_SKYPE")
