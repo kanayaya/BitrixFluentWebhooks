@@ -7,6 +7,7 @@ import com.kanayaya.BitrixFluentWebhooks.api.Method;
 import com.kanayaya.BitrixFluentWebhooks.api.request.BitrixFormRequest;
 import com.kanayaya.BitrixFluentWebhooks.exceptions.BitrixException;
 import com.kanayaya.BitrixFluentWebhooks.exceptions.BitrixNotAuthorizedException;
+import com.kanayaya.BitrixFluentWebhooks.exceptions.BitrixSessionExpiredException;
 
 import java.io.IOException;
 import java.net.CookieManager;
@@ -38,6 +39,16 @@ public interface BitrixSessionClient extends BitrixClient {
     @Override
     default HttpRequest request(Method method, Map<String, Object> params) {
         return getSessionManager().prepareRequest(method, params);
+    }
+
+    @Override
+    default JsonNode invoke(Method method, Map<String, Object> params) {
+        try {
+            return BitrixClient.super.invoke(method, params);
+        } catch (BitrixNotAuthorizedException e) {
+            getSessionManager().refresh();
+        }
+        return BitrixClient.super.invoke(method, params);
     }
 
     class SessionManager {
@@ -92,9 +103,11 @@ public interface BitrixSessionClient extends BitrixClient {
         }
 
         public void refresh() {
-            Optional.ofNullable(passwordProvider).ifPresentOrElse(provider -> {
-                authorize(host, login, provider.get());
-            }, () -> System.out.println("No refresh provided for " + login));
+            Optional.ofNullable(passwordProvider).map(Supplier::get).ifPresentOrElse(password -> authorize(host, login, password),
+                    () -> {
+                throw new BitrixSessionExpiredException(
+                        "Session for \"" + login + "\" expired and no password have been provided to refresh it");
+            });
         }
         public HttpRequest prepareRequest(Method method, Map<String, Object> params) {
             params = params == null? new HashMap<>() : new HashMap<>(params);

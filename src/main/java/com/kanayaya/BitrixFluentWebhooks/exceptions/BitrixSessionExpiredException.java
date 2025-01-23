@@ -15,4 +15,8 @@ public class BitrixSessionExpiredException extends BitrixNotAuthorizedException 
     public BitrixSessionExpiredException(Throwable cause) {
         super(cause);
     }
+
+    public BitrixSessionExpiredException(String errorKey, String errorDescription) {
+        super(errorKey, errorDescription);
+    }
 }

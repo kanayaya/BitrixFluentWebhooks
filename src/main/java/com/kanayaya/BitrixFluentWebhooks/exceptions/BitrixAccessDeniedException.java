@@ -15,4 +15,8 @@ public class BitrixAccessDeniedException extends BitrixException {
     public BitrixAccessDeniedException(Throwable cause) {
         super(cause);
     }
+
+    public BitrixAccessDeniedException(String errorKey, String errorDescription) {
+        super(errorKey, errorDescription);
+    }
 }

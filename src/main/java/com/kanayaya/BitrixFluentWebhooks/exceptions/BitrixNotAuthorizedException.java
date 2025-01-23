@@ -15,4 +15,8 @@ public class BitrixNotAuthorizedException extends BitrixException {
     public BitrixNotAuthorizedException(Throwable cause) {
         super(cause);
     }
+
+    public BitrixNotAuthorizedException(String errorKey, String errorDescription) {
+        super(errorKey, errorDescription);
+    }
 }

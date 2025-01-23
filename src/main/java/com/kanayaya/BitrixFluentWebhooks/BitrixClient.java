@@ -1,9 +1,11 @@
 package com.kanayaya.BitrixFluentWebhooks;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
 import com.kanayaya.BitrixFluentWebhooks.api.methods.UserMethods;
+import com.kanayaya.BitrixFluentWebhooks.exceptions.BitrixException;
 import com.kanayaya.BitrixFluentWebhooks.exceptions.ExceptionHandler;
 
 import java.io.IOException;
@@ -22,14 +24,20 @@ public interface BitrixClient {
     }
     default JsonNode invoke(Method method, Map<String, Object> params) {
         HttpRequest request = request(method, params);
+        HttpResponse<String> response;
         try {
-            HttpClient client = client();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
-            JsonNode responseBody = new ObjectMapper().readTree(response.body());
-            ExceptionHandler.handleResponse(responseBody);
-            return responseBody;
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            response = client().send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            throw new BitrixException("Exception while sending request to " + host() + ". Maybe server is out of reach", e);
+        } catch (InterruptedException e) {
+            throw new BitrixException("Request interrupted", e);
+        }
+        try {
+            JsonNode responseNode = new ObjectMapper().readTree(response.body());
+            ExceptionHandler.handleResponse(responseNode);
+            return responseNode;
+        } catch (JsonProcessingException e) {
+            throw new BitrixException("Server response doesn't match json rules", e);
         }
     }
 

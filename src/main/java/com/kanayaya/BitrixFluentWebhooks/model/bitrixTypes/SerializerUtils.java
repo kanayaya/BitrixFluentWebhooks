@@ -14,7 +14,7 @@ public class SerializerUtils {
     public static final Function<String, Boolean> BOOLEAN_DESERIALIZER = s -> s.trim().equalsIgnoreCase("Y");
 
     public static final Function<String, Integer> INTEGER_DESERIALIZER = Integer::parseInt;
-
+    public static final Function<String, Double> DOUBLE_DESERIALIZER = Double::parseDouble;
     public static final Function<String, LocalDate> DATE_DESERIALIZER = s -> LocalDate.parse(s, DateTimeFormatter.ISO_DATE);
     public static final Function<String, LocalDateTime> DATE_TIME_DESERIALIZER = s -> LocalDateTime.parse(s, DateTimeFormatter.ISO_DATE_TIME);
     public static final Function<String, OffsetDateTime> OFFSET_DATE_TIME_DESERIALIZER = s -> OffsetDateTime.parse(s, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
