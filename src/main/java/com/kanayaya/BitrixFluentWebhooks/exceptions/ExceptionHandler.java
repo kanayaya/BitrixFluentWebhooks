@@ -9,7 +9,8 @@ public class ExceptionHandler {
     private static final Map<String, BiFunction<String, String, RuntimeException>> exceptions = Map.of(
             "ACCESS_DENIED", BitrixAccessDeniedException::new,
             "access_denied: User not authorized", BitrixNotAuthorizedException::new,
-            "ERROR_ARGUMENT", BitrixIllegalParamsException::new
+            "ERROR_ARGUMENT", BitrixIllegalParamsException::new,
+            "WRONG_AUTH_TYPE", BitrixOauth2RequiredException::new
     );
 
     public static void handleResponse(JsonNode response) {
