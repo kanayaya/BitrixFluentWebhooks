@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
 import com.kanayaya.BitrixFluentWebhooks.api.request.filter.MutableFilter;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullUserEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.UserEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
 import com.kanayaya.BitrixFluentWebhooks.session.SessionTest;
@@ -184,12 +185,12 @@ public class FieldsParser {
     @Test
     public void userFields() throws JsonProcessingException {
         String fields = TEST_CLIENT.invoke(Method.CRM_DEAL_FIELDS, Map.of("TASK_ID", 1)).toPrettyString();
-        String user = TEST_CLIENT.invoke(Method.USER_GET, Map.of("FILTER", new MutableFilter<User>().field(User.ID).eq(1).getParams(), "ADMIN_MODE", true)).toPrettyString();
-
-
-
-        System.out.println(fields);
+        String user = TEST_CLIENT.invoke(Method.USER_GET, Map.of("FILTER", new MutableFilter<User>().field(User.ID).eq(4).getParams(), "ADMIN_MODE", true)).toPrettyString();
         System.out.println(user);
+        FullUserEntity userEntity = TEST_CLIENT.user().get(userFilter -> userFilter.field(User.ID).eq(4)).send().get(0);
+        System.out.println(userEntity);
+
+
     }
     @Test
     public void printEnums() throws IOException {

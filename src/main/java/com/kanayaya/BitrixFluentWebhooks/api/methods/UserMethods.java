@@ -9,6 +9,7 @@ import com.kanayaya.BitrixFluentWebhooks.api.Method;
 import com.kanayaya.BitrixFluentWebhooks.api.request.filter.Filter;
 import com.kanayaya.BitrixFluentWebhooks.api.request.filter.MutableFilter;
 import com.kanayaya.BitrixFluentWebhooks.exceptions.BitrixException;
+import com.kanayaya.BitrixFluentWebhooks.model.jackson.ObjectMapperUtils;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullUserEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
 import org.jetbrains.annotations.ApiStatus.Internal;
@@ -65,7 +66,7 @@ public class UserMethods extends RequestStorage {
     public class GetUser {
         private GetUser() {}
         public List<FullUserEntity> send() {
-            ObjectMapper mapper = new ObjectMapper();
+            ObjectMapper mapper = ObjectMapperUtils.newMapper();
             JsonNode responseNode = client.invoke(Method.USER_GET, params);
             JsonNode resultNode = responseNode.get("result");
             JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, FullUserEntity.class);

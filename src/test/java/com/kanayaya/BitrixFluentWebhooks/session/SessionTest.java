@@ -3,7 +3,6 @@ package com.kanayaya.BitrixFluentWebhooks.session;
 import com.kanayaya.BitrixFluentWebhooks.BitrixSessionClient;
 import com.kanayaya.BitrixFluentWebhooks.BitrixWebhookClient;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
-import com.kanayaya.BitrixFluentWebhooks.api.request.filter.MutableFilter;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
 import org.junit.jupiter.api.Test;
 
