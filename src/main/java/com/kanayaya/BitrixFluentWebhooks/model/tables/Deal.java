@@ -3,15 +3,16 @@ package com.kanayaya.BitrixFluentWebhooks.model.tables;
 import com.kanayaya.BitrixFluentWebhooks.model.Field;
 import com.kanayaya.BitrixFluentWebhooks.model.Table;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.*;
-import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.UserField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.CountryField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.YNField;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.*;
 
 import java.time.OffsetDateTime;
 
 import static com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.SerializerUtils.*;
 
-public class Deal extends Table {/**
+public class Deal extends Table {
+/**
     * ID
     */
 public static final Field<Deal, Integer> ID = new Field<>("ID", INTEGER_DESERIALIZER);
@@ -19,6 +20,14 @@ public static final Field<Deal, Integer> ID = new Field<>("ID", INTEGER_DESERIAL
     * Название
     */
 public static final StringField<Deal> TITLE = new StringField<>("TITLE");
+/**
+    * Тип
+    */
+public static final StatusField<Deal> TYPE_ID = new StatusField<>("TYPE_ID");
+/**
+    * Стадия сделки
+    */
+public static final StatusField<Deal> STAGE_ID = new StatusField<>("STAGE_ID");
 /**
     * Группа стадии
     */
@@ -55,6 +64,18 @@ public static final YNField<Deal> IS_MANUAL_OPPORTUNITY = new YNField<>("IS_MANU
     * Ставка налога
     */
 public static final Field<Deal, Double> TAX_VALUE = new Field<>("TAX_VALUE", DOUBLE_DESERIALIZER);
+/**
+    * Компания
+    */
+public static final CompanyField<Deal> COMPANY_ID = new CompanyField<>("COMPANY_ID");
+/**
+    * Контакт
+    */
+public static final ContactField<Deal> CONTACT_ID = new ContactField<>("CONTACT_ID");
+/**
+    * Контакты
+    */
+public static final ContactField<Deal> CONTACT_IDS = new ContactField<>("CONTACT_IDS");
 /**
     * Дата начала
     */
@@ -104,9 +125,17 @@ public static final DateField<Deal, OffsetDateTime> DATE_MODIFY = new DateField<
     */
 public static final DateField<Deal, OffsetDateTime> MOVED_TIME = new DateField<>("MOVED_TIME", DateField.DateLevel.OFFSET_DATE_TIME_LEVEL);
 /**
+    * Источник
+    */
+public static final StatusField<Deal> SOURCE_ID = new StatusField<>("SOURCE_ID");
+/**
     * Дополнительно об источнике
     */
 public static final StringField<Deal> SOURCE_DESCRIPTION = new StringField<>("SOURCE_DESCRIPTION");
+/**
+    * Лид
+    */
+public static final LeadField<Deal> LEAD_ID = new LeadField<>("LEAD_ID");
 /**
     * Дополнительная информация
     */

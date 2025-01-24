@@ -7,7 +7,7 @@ import com.kanayaya.BitrixFluentWebhooks.model.tables.Activity;
 import java.util.function.Function;
 
 public class ActivitystatusField extends Field<Activity, Activitystatus> {
-    public ActivitystatusField(String name, Function<String, Activitystatus> deserializer) {
+    public ActivitystatusField(String name) {
         super(name, Activitystatus::getId, s -> Activitystatus.getById(Integer.parseInt(s)));
     }
 }

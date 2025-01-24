@@ -7,67 +7,32 @@ import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
 import java.time.OffsetDateTime;
 
-public class FullDealEntity extends DealEntity implements FullEntity<FullDealEntity> {
+public class FullQuoteEntity extends QuoteEntity implements FullEntity<FullQuoteEntity> {
     /**
     * ID
     */
     @JsonProperty("ID")
     private Integer id;
     /**
-    * Название
+    * № предложения
+    */
+    @JsonProperty("QUOTE_NUMBER")
+    private String quoteNumber;
+    /**
+    * Тема
     */
     @JsonProperty("TITLE")
     private String title;
     /**
-    * Тип
+    * Стадия предложения
     */
-    @JsonProperty("TYPE_ID")
-    private StatusEntity typeId;
-    /**
-    * Стадия сделки
-    */
-    @JsonProperty("STAGE_ID")
-    private StatusEntity stageId;
-    /**
-    * Группа стадии
-    */
-    @JsonProperty("STAGE_SEMANTIC_ID")
-    private String stageSemanticId;
-    /**
-    * Новая сделка
-    */
-    @JsonProperty("IS_NEW")
-    private YN isNew;
-    /**
-    * Регулярная сделка
-    */
-    @JsonProperty("IS_RECURRING")
-    private YN isRecurring;
-    /**
-    * Повторная сделка
-    */
-    @JsonProperty("IS_RETURN_CUSTOMER")
-    private YN isReturnCustomer;
-    /**
-    * Повторное обращение
-    */
-    @JsonProperty("IS_REPEATED_APPROACH")
-    private YN isRepeatedApproach;
-    /**
-    * Вероятность
-    */
-    @JsonProperty("PROBABILITY")
-    private Integer probability;
+    @JsonProperty("STATUS_ID")
+    private StatusEntity statusId;
     /**
     * Сумма
     */
     @JsonProperty("OPPORTUNITY")
     private Double opportunity;
-    /**
-    * IS_MANUAL_OPPORTUNITY
-    */
-    @JsonProperty("IS_MANUAL_OPPORTUNITY")
-    private YN isManualOpportunity;
     /**
     * Ставка налога
     */
@@ -79,32 +44,42 @@ public class FullDealEntity extends DealEntity implements FullEntity<FullDealEnt
     @JsonProperty("COMPANY_ID")
     private CompanyEntity companyId;
     /**
+    * Реквизиты вашей компании
+    */
+    @JsonProperty("MYCOMPANY_ID")
+    private CompanyEntity mycompanyId;
+    /**
     * Контакт
     */
     @JsonProperty("CONTACT_ID")
     private ContactEntity contactId;
     /**
-    * Контакты
+    * CONTACT_IDS
     */
     @JsonProperty("CONTACT_IDS")
     private ContactEntity contactIds;
     /**
-    * Дата начала
+    * Дата выставления
     */
     @JsonProperty("BEGINDATE")
     private OffsetDateTime begindate;
     /**
-    * Дата завершения
+    * Срок
     */
     @JsonProperty("CLOSEDATE")
     private OffsetDateTime closedate;
     /**
-    * Доступна для всех
+    * ACTUAL_DATE
+    */
+    @JsonProperty("ACTUAL_DATE")
+    private OffsetDateTime actualDate;
+    /**
+    * Доступно для всех
     */
     @JsonProperty("OPENED")
     private YN opened;
     /**
-    * Закрыта
+    * Закрыто
     */
     @JsonProperty("CLOSED")
     private YN closed;
@@ -114,25 +89,65 @@ public class FullDealEntity extends DealEntity implements FullEntity<FullDealEnt
     @JsonProperty("COMMENTS")
     private String comments;
     /**
+    * Содержание
+    */
+    @JsonProperty("CONTENT")
+    private String content;
+    /**
+    * Условия
+    */
+    @JsonProperty("TERMS")
+    private String terms;
+    /**
+    * Клиент
+    */
+    @JsonProperty("CLIENT_TITLE")
+    private String clientTitle;
+    /**
+    * Адрес
+    */
+    @JsonProperty("CLIENT_ADDR")
+    private String clientAddr;
+    /**
+    * Контактное лицо
+    */
+    @JsonProperty("CLIENT_CONTACT")
+    private String clientContact;
+    /**
+    * E-mail
+    */
+    @JsonProperty("CLIENT_EMAIL")
+    private String clientEmail;
+    /**
+    * Телефон
+    */
+    @JsonProperty("CLIENT_PHONE")
+    private String clientPhone;
+    /**
+    * ИНН
+    */
+    @JsonProperty("CLIENT_TP_ID")
+    private String clientTpId;
+    /**
+    * КПП
+    */
+    @JsonProperty("CLIENT_TPA_ID")
+    private String clientTpaId;
+    /**
     * Ответственный
     */
     @JsonProperty("ASSIGNED_BY_ID")
     private UserEntity assignedById;
     /**
-    * Кем создана
+    * Кем создан
     */
     @JsonProperty("CREATED_BY_ID")
     private UserEntity createdById;
     /**
-    * Кем изменена
+    * Кем изменён
     */
     @JsonProperty("MODIFY_BY_ID")
     private UserEntity modifyById;
-    /**
-    * MOVED_BY_ID
-    */
-    @JsonProperty("MOVED_BY_ID")
-    private UserEntity movedById;
     /**
     * Дата создания
     */
@@ -144,40 +159,20 @@ public class FullDealEntity extends DealEntity implements FullEntity<FullDealEnt
     @JsonProperty("DATE_MODIFY")
     private OffsetDateTime dateModify;
     /**
-    * MOVED_TIME
-    */
-    @JsonProperty("MOVED_TIME")
-    private OffsetDateTime movedTime;
-    /**
-    * Источник
-    */
-    @JsonProperty("SOURCE_ID")
-    private StatusEntity sourceId;
-    /**
-    * Дополнительно об источнике
-    */
-    @JsonProperty("SOURCE_DESCRIPTION")
-    private String sourceDescription;
-    /**
     * Лид
     */
     @JsonProperty("LEAD_ID")
     private LeadEntity leadId;
     /**
-    * Дополнительная информация
+    * Сделка
     */
-    @JsonProperty("ADDITIONAL_INFO")
-    private String additionalInfo;
+    @JsonProperty("DEAL_ID")
+    private DealEntity dealId;
     /**
-    * Внешний источник
+    * Тип клиента
     */
-    @JsonProperty("ORIGINATOR_ID")
-    private String originatorId;
-    /**
-    * Идентификатор элемента во внешнем источнике
-    */
-    @JsonProperty("ORIGIN_ID")
-    private String originId;
+    @JsonProperty("PERSON_TYPE_ID")
+    private Integer personTypeId;
     /**
     * Рекламная система
     */
@@ -215,7 +210,7 @@ public class FullDealEntity extends DealEntity implements FullEntity<FullDealEnt
     private UserEntity lastActivityBy;
 
     @Override
-    public FullDealEntity getFull(BitrixClient client) {
+    public FullQuoteEntity getFull(BitrixClient client) {
         return this;
     }
 }

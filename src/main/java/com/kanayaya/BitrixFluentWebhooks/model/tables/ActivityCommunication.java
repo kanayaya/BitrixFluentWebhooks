@@ -5,12 +5,14 @@ import com.kanayaya.BitrixFluentWebhooks.model.Table;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.*;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.CountryField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.YNField;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.*;
 
 import java.time.OffsetDateTime;
 
 import static com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.SerializerUtils.*;
 
-public class ActivityCommunication extends Table {/**
+public class ActivityCommunication extends Table {
+/**
     * ID
     */
 public static final Field<ActivityCommunication, Integer> ID = new Field<>("ID", INTEGER_DESERIALIZER);

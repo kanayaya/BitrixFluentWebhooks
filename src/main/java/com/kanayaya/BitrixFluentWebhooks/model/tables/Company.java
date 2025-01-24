@@ -3,16 +3,16 @@ package com.kanayaya.BitrixFluentWebhooks.model.tables;
 import com.kanayaya.BitrixFluentWebhooks.model.Field;
 import com.kanayaya.BitrixFluentWebhooks.model.Table;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.*;
-import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.UserField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.CountryField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.YNField;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.*;
 
 import java.time.OffsetDateTime;
 
 import static com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.SerializerUtils.*;
 
 public class Company extends Table {
-    /**
+/**
     * ID
     */
 public static final Field<Company, Integer> ID = new Field<>("ID", INTEGER_DESERIALIZER);
@@ -20,6 +20,10 @@ public static final Field<Company, Integer> ID = new Field<>("ID", INTEGER_DESER
     * Название компании
     */
 public static final StringField<Company> TITLE = new StringField<>("TITLE");
+/**
+    * Тип компании
+    */
+public static final StatusField<Company> COMPANY_TYPE = new StatusField<>("COMPANY_TYPE");
 /**
     * Фактический адрес
     */
@@ -101,6 +105,14 @@ public static final Field<Company, Integer> REG_ADDRESS_LOC_ADDR_ID = new Field<
     */
 public static final StringField<Company> BANKING_DETAILS = new StringField<>("BANKING_DETAILS");
 /**
+    * Сфера деятельности
+    */
+public static final StatusField<Company> INDUSTRY = new StatusField<>("INDUSTRY");
+/**
+    * Кол-во сотрудников
+    */
+public static final StatusField<Company> EMPLOYEES = new StatusField<>("EMPLOYEES");
+/**
     * Годовой оборот
     */
 public static final Field<Company, Double> REVENUE = new Field<>("REVENUE", DOUBLE_DESERIALIZER);
@@ -148,6 +160,14 @@ public static final DateField<Company, OffsetDateTime> DATE_CREATE = new DateFie
     * Дата изменения
     */
 public static final DateField<Company, OffsetDateTime> DATE_MODIFY = new DateField<>("DATE_MODIFY", DateField.DateLevel.OFFSET_DATE_TIME_LEVEL);
+/**
+    * Контакт
+    */
+public static final ContactField<Company> CONTACT_ID = new ContactField<>("CONTACT_ID");
+/**
+    * Лид
+    */
+public static final LeadField<Company> LEAD_ID = new LeadField<>("LEAD_ID");
 /**
     * Внешний источник
     */

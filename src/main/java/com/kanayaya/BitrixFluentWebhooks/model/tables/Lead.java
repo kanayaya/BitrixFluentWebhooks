@@ -3,16 +3,16 @@ package com.kanayaya.BitrixFluentWebhooks.model.tables;
 import com.kanayaya.BitrixFluentWebhooks.model.Field;
 import com.kanayaya.BitrixFluentWebhooks.model.Table;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.*;
-import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.UserField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.CountryField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.YNField;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.*;
 
 import java.time.OffsetDateTime;
 
 import static com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.SerializerUtils.*;
 
 public class Lead extends Table {
-    /**
+/**
     * ID
     */
 public static final Field<Lead, Integer> ID = new Field<>("ID", INTEGER_DESERIALIZER);
@@ -20,6 +20,10 @@ public static final Field<Lead, Integer> ID = new Field<>("ID", INTEGER_DESERIAL
     * Название лида
     */
 public static final StringField<Lead> TITLE = new StringField<>("TITLE");
+/**
+    * Обращение
+    */
+public static final StatusField<Lead> HONORIFIC = new StatusField<>("HONORIFIC");
 /**
     * Имя
     */
@@ -41,9 +45,17 @@ public static final DateField<Lead, OffsetDateTime> BIRTHDATE = new DateField<>(
     */
 public static final StringField<Lead> COMPANY_TITLE = new StringField<>("COMPANY_TITLE");
 /**
+    * Источник
+    */
+public static final StatusField<Lead> SOURCE_ID = new StatusField<>("SOURCE_ID");
+/**
     * Дополнительно об источнике
     */
 public static final StringField<Lead> SOURCE_DESCRIPTION = new StringField<>("SOURCE_DESCRIPTION");
+/**
+    * Стадия
+    */
+public static final StatusField<Lead> STATUS_ID = new StatusField<>("STATUS_ID");
 /**
     * Дополнительно о стадии
     */
@@ -148,6 +160,18 @@ public static final DateField<Lead, OffsetDateTime> DATE_MODIFY = new DateField<
     * MOVED_TIME
     */
 public static final DateField<Lead, OffsetDateTime> MOVED_TIME = new DateField<>("MOVED_TIME", DateField.DateLevel.OFFSET_DATE_TIME_LEVEL);
+/**
+    * Компания
+    */
+public static final CompanyField<Lead> COMPANY_ID = new CompanyField<>("COMPANY_ID");
+/**
+    * Контакт
+    */
+public static final ContactField<Lead> CONTACT_ID = new ContactField<>("CONTACT_ID");
+/**
+    * CONTACT_IDS
+    */
+public static final ContactField<Lead> CONTACT_IDS = new ContactField<>("CONTACT_IDS");
 /**
     * Повторный лид
     */

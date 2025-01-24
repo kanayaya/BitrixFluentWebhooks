@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.ActivityCommunicationEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.ActivityEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.UserEntity;
 
@@ -205,6 +206,11 @@ public class FullActivityEntity extends ActivityEntity implements FullEntity<Ful
     */
     @JsonProperty("AUTOCOMPLETE_RULE")
     private Integer autocompleteRule;
+    /**
+    * Канал коммуникации
+    */
+    @JsonProperty("COMMUNICATIONS")
+    private ActivityCommunicationEntity communications;
     /**
     * IS_INCOMING_CHANNEL
     */

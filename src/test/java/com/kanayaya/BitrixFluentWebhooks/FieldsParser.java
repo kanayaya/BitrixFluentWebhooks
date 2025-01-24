@@ -7,9 +7,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
 import com.kanayaya.BitrixFluentWebhooks.api.request.filter.MutableFilter;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.*;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullUserEntity;
-import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.UserEntity;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
+import com.kanayaya.BitrixFluentWebhooks.model.tables.ActivityCommunication;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
 import com.kanayaya.BitrixFluentWebhooks.session.SessionTest;
 import org.junit.jupiter.api.Test;
@@ -161,6 +163,12 @@ public class FieldsParser {
         types.put("crm_enum_contenttype", "ContenttypeField<%s> %s = new ContenttypeField(\"%s\");");
         types.put("crm_enum_activitydirection", "ActivitydirectionField<%s> %s = new ActivitydirectionField(\"%s\");");
         types.put("object", "JsonField<%s> %s = new JsonField<>(\"%s\");");
+        types.put("crm_activity_communication", "ActivityCommunicationField<%s> %s = new ActivityCommunicationField<>(\"%s\");");
+        types.put("crm_status", "StatusField<%s> %s = new StatusField<>(\"%s\");");
+        types.put("crm_company", "CompanyField<%s> %s = new CompanyField<>(\"%s\");");
+        types.put("crm_lead", "LeadField<%s> %s = new LeadField<>(\"%s\");");
+        types.put("crm_contact", "ContactField<%s> %s = new ContactField<>(\"%s\");");
+        types.put("crm_deal", "DealField<%s> %s = new DealField<>(\"%s\");");
     }
     private static final Map<String, String> javaTypes = new HashMap<>();
     static {
@@ -180,6 +188,12 @@ public class FieldsParser {
         javaTypes.put("crm_enum_contenttype", Contenttype.class.getSimpleName());
         javaTypes.put("crm_enum_activitydirection", Activitydirection.class.getSimpleName());
         javaTypes.put("object", JsonNode.class.getSimpleName());
+        javaTypes.put("crm_activity_communication", ActivityCommunicationEntity.class.getSimpleName());
+        javaTypes.put("crm_status", StatusEntity.class.getSimpleName());
+        javaTypes.put("crm_company", CompanyEntity.class.getSimpleName());
+        javaTypes.put("crm_lead", LeadEntity.class.getSimpleName());
+        javaTypes.put("crm_contact", ContactEntity.class.getSimpleName());
+        javaTypes.put("crm_deal", DealEntity.class.getSimpleName());
     }
 
     @Test
@@ -189,8 +203,6 @@ public class FieldsParser {
         System.out.println(user);
         FullUserEntity userEntity = TEST_CLIENT.user().get(userFilter -> userFilter.field(User.ID).eq(4)).send().get(0);
         System.out.println(userEntity);
-
-
     }
     @Test
     public void printEnums() throws IOException {
@@ -224,7 +236,7 @@ public class FieldsParser {
 
     @Test
     public void printDeals() {
-        System.out.println(SessionTest.admin.invoke(Method.DISK_FILE_GET).toPrettyString());
+        System.out.println(TEST_CLIENT.invoke(Method.CRM_DEAL_LIST).toPrettyString());
         //http://localhost/bitrix/tools/crm_show_file.php?fileId=49&ownerTypeId=6&ownerId=2&auth=
     }
 

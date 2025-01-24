@@ -3,19 +3,23 @@ package com.kanayaya.BitrixFluentWebhooks.model.tables;
 import com.kanayaya.BitrixFluentWebhooks.model.Field;
 import com.kanayaya.BitrixFluentWebhooks.model.Table;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.*;
-import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.UserField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.CountryField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.YNField;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.*;
 
 import java.time.OffsetDateTime;
 
 import static com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.SerializerUtils.*;
 
 public class Contact extends Table {
-    /**
+/**
     * ID
     */
 public static final Field<Contact, Integer> ID = new Field<>("ID", INTEGER_DESERIALIZER);
+/**
+    * Обращение
+    */
+public static final StatusField<Contact> HONORIFIC = new StatusField<>("HONORIFIC");
 /**
     * Имя
     */
@@ -32,6 +36,14 @@ public static final StringField<Contact> LAST_NAME = new StringField<>("LAST_NAM
     * Дата рождения
     */
 public static final DateField<Contact, OffsetDateTime> BIRTHDATE = new DateField<>("BIRTHDATE", DateField.DateLevel.OFFSET_DATE_TIME_LEVEL);
+/**
+    * Тип контакта
+    */
+public static final StatusField<Contact> TYPE_ID = new StatusField<>("TYPE_ID");
+/**
+    * Источник
+    */
+public static final StatusField<Contact> SOURCE_ID = new StatusField<>("SOURCE_ID");
 /**
     * Дополнительно об источнике
     */
@@ -120,6 +132,18 @@ public static final DateField<Contact, OffsetDateTime> DATE_CREATE = new DateFie
     * Дата изменения
     */
 public static final DateField<Contact, OffsetDateTime> DATE_MODIFY = new DateField<>("DATE_MODIFY", DateField.DateLevel.OFFSET_DATE_TIME_LEVEL);
+/**
+    * Компания
+    */
+public static final CompanyField<Contact> COMPANY_ID = new CompanyField<>("COMPANY_ID");
+/**
+    * COMPANY_IDS
+    */
+public static final CompanyField<Contact> COMPANY_IDS = new CompanyField<>("COMPANY_IDS");
+/**
+    * Лид
+    */
+public static final LeadField<Contact> LEAD_ID = new LeadField<>("LEAD_ID");
 /**
     * Внешний источник
     */

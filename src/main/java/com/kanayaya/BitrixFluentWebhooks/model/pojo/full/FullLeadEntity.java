@@ -3,8 +3,7 @@ package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.YN;
-import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.LeadEntity;
-import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.UserEntity;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
 import java.time.OffsetDateTime;
 
@@ -19,6 +18,11 @@ public class FullLeadEntity extends LeadEntity implements FullEntity<FullLeadEnt
     */
     @JsonProperty("TITLE")
     private String title;
+    /**
+    * Обращение
+    */
+    @JsonProperty("HONORIFIC")
+    private StatusEntity honorific;
     /**
     * Имя
     */
@@ -45,10 +49,20 @@ public class FullLeadEntity extends LeadEntity implements FullEntity<FullLeadEnt
     @JsonProperty("COMPANY_TITLE")
     private String companyTitle;
     /**
+    * Источник
+    */
+    @JsonProperty("SOURCE_ID")
+    private StatusEntity sourceId;
+    /**
     * Дополнительно об источнике
     */
     @JsonProperty("SOURCE_DESCRIPTION")
     private String sourceDescription;
+    /**
+    * Стадия
+    */
+    @JsonProperty("STATUS_ID")
+    private StatusEntity statusId;
     /**
     * Дополнительно о стадии
     */
@@ -179,6 +193,21 @@ public class FullLeadEntity extends LeadEntity implements FullEntity<FullLeadEnt
     */
     @JsonProperty("MOVED_TIME")
     private OffsetDateTime movedTime;
+    /**
+    * Компания
+    */
+    @JsonProperty("COMPANY_ID")
+    private CompanyEntity companyId;
+    /**
+    * Контакт
+    */
+    @JsonProperty("CONTACT_ID")
+    private ContactEntity contactId;
+    /**
+    * CONTACT_IDS
+    */
+    @JsonProperty("CONTACT_IDS")
+    private ContactEntity contactIds;
     /**
     * Повторный лид
     */
