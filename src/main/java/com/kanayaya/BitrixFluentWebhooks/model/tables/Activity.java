@@ -5,6 +5,7 @@ import com.kanayaya.BitrixFluentWebhooks.model.Table;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.*;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.UserField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.CountryField;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.OwnertypeField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.YNField;
 
 import java.time.OffsetDateTime;
@@ -136,4 +137,5 @@ public static final Field<Activity, Integer> AUTOCOMPLETE_RULE = new Field<>("AU
     * IS_INCOMING_CHANNEL
     */
 public static final YNField<Activity> IS_INCOMING_CHANNEL = new YNField<>("IS_INCOMING_CHANNEL");
+
 }
