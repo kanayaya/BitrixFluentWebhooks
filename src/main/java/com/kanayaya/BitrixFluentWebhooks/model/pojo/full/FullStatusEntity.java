@@ -5,7 +5,7 @@ import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.YN;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.StatusEntity;
 
-public class FullStatusEntity extends StatusEntity implements FullEntity<FullStatusEntity> {
+public class FullStatusEntity extends StatusEntity {
     /**
     * ID
     */

@@ -5,26 +5,24 @@ import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullStatusEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.Status;
 
-public class StatusEntity implements Entity<FullStatusEntity> {
-    @JsonProperty("ID")
-    private int id;
+public class StatusEntity {
+    @JsonProperty("STATUS_ID")
+    private String statusId;
     public StatusEntity() {
 
     }
-    public StatusEntity(int id) {
-        this.id = id;
-    }
-    @Override
-    public int getId() {
-        return id;
+    public StatusEntity(String statusId) {
+        this.statusId = statusId;
     }
 
-    @Override
+    public String getId() {
+        return statusId;
+    }
+
     public boolean delete(BitrixClient client) {
         return false;
     }
 
-    @Override
     public FullStatusEntity getFull(BitrixClient client) {
         return null;
     }
