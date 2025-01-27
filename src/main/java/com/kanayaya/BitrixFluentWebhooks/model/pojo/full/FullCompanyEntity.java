@@ -2,10 +2,13 @@ package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
-import com.kanayaya.BitrixFluentWebhooks.model.enums.YN;
+import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.BitrixFile;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.MultifieldItem;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 public class FullCompanyEntity extends CompanyEntity implements FullEntity<FullCompanyEntity> {
     /**
@@ -23,6 +26,11 @@ public class FullCompanyEntity extends CompanyEntity implements FullEntity<FullC
     */
     @JsonProperty("COMPANY_TYPE")
     private StatusEntity companyType;
+    /**
+    * Логотип
+    */
+    @JsonProperty("LOGO")
+    private BitrixFile logo;
     /**
     * Фактический адрес
     */
@@ -133,6 +141,11 @@ public class FullCompanyEntity extends CompanyEntity implements FullEntity<FullC
     */
     @JsonProperty("EMPLOYEES")
     private StatusEntity employees;
+    /**
+    * Валюта
+    */
+    @JsonProperty("CURRENCY_ID")
+    private CurrencyEntity currencyId;
     /**
     * Годовой оборот
     */
@@ -253,6 +266,31 @@ public class FullCompanyEntity extends CompanyEntity implements FullEntity<FullC
     */
     @JsonProperty("LAST_ACTIVITY_BY")
     private UserEntity lastActivityBy;
+    /**
+    * Телефон
+    */
+    @JsonProperty("PHONE")
+    private List<MultifieldItem> phone;
+    /**
+    * E-mail
+    */
+    @JsonProperty("EMAIL")
+    private List<MultifieldItem> email;
+    /**
+    * Сайт
+    */
+    @JsonProperty("WEB")
+    private List<MultifieldItem> web;
+    /**
+    * Мессенджер
+    */
+    @JsonProperty("IM")
+    private List<MultifieldItem> im;
+    /**
+    * LINK
+    */
+    @JsonProperty("LINK")
+    private List<MultifieldItem> link;
 
     @Override
     public FullCompanyEntity getFull(BitrixClient client) {

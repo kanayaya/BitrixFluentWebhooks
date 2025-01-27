@@ -2,7 +2,7 @@ package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
-import com.kanayaya.BitrixFluentWebhooks.model.enums.YN;
+import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
 import java.time.OffsetDateTime;
@@ -59,6 +59,11 @@ public class FullDealEntity extends DealEntity implements FullEntity<FullDealEnt
     @JsonProperty("PROBABILITY")
     private Integer probability;
     /**
+    * Валюта
+    */
+    @JsonProperty("CURRENCY_ID")
+    private CurrencyEntity currencyId;
+    /**
     * Сумма
     */
     @JsonProperty("OPPORTUNITY")
@@ -88,6 +93,11 @@ public class FullDealEntity extends DealEntity implements FullEntity<FullDealEnt
     */
     @JsonProperty("CONTACT_IDS")
     private ContactEntity contactIds;
+    /**
+    * Предложение
+    */
+    @JsonProperty("QUOTE_ID")
+    private QuoteEntity quoteId;
     /**
     * Дата начала
     */

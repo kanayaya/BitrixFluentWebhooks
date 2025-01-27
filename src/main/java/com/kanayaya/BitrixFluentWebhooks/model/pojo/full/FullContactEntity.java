@@ -2,10 +2,13 @@ package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
-import com.kanayaya.BitrixFluentWebhooks.model.enums.YN;
+import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.BitrixFile;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.MultifieldItem;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 public class FullContactEntity extends ContactEntity implements FullEntity<FullContactEntity> {
     /**
@@ -33,6 +36,11 @@ public class FullContactEntity extends ContactEntity implements FullEntity<FullC
     */
     @JsonProperty("LAST_NAME")
     private String lastName;
+    /**
+    * Фотография
+    */
+    @JsonProperty("PHOTO")
+    private BitrixFile photo;
     /**
     * Дата рождения
     */
@@ -228,6 +236,31 @@ public class FullContactEntity extends ContactEntity implements FullEntity<FullC
     */
     @JsonProperty("LAST_ACTIVITY_BY")
     private UserEntity lastActivityBy;
+    /**
+    * Телефон
+    */
+    @JsonProperty("PHONE")
+    private List<MultifieldItem> phone;
+    /**
+    * E-mail
+    */
+    @JsonProperty("EMAIL")
+    private List<MultifieldItem> email;
+    /**
+    * Сайт
+    */
+    @JsonProperty("WEB")
+    private List<MultifieldItem> web;
+    /**
+    * Мессенджер
+    */
+    @JsonProperty("IM")
+    private List<MultifieldItem> im;
+    /**
+    * LINK
+    */
+    @JsonProperty("LINK")
+    private List<MultifieldItem> link;
 
     @Override
     public FullContactEntity getFull(BitrixClient client) {

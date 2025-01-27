@@ -4,9 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
-import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.ActivityCommunicationEntity;
-import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.ActivityEntity;
-import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.UserEntity;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.BitrixFile;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
 import java.time.OffsetDateTime;
 
@@ -211,6 +210,16 @@ public class FullActivityEntity extends ActivityEntity implements FullEntity<Ful
     */
     @JsonProperty("COMMUNICATIONS")
     private ActivityCommunicationEntity communications;
+    /**
+    * Файлы
+    */
+    @JsonProperty("FILES")
+    private BitrixFile files;
+    /**
+    * Добавленные файлы
+    */
+    @JsonProperty("WEBDAV_ELEMENTS")
+    private BitrixFile webdavElements;
     /**
     * IS_INCOMING_CHANNEL
     */

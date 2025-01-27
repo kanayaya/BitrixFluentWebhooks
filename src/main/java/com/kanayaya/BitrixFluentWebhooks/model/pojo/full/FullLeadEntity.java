@@ -3,9 +3,11 @@ package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.YN;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.MultifieldItem;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 public class FullLeadEntity extends LeadEntity implements FullEntity<FullLeadEntity> {
     /**
@@ -123,6 +125,11 @@ public class FullLeadEntity extends LeadEntity implements FullEntity<FullLeadEnt
     */
     @JsonProperty("ADDRESS_LOC_ADDR_ID")
     private Integer addressLocAddrId;
+    /**
+    * Валюта
+    */
+    @JsonProperty("CURRENCY_ID")
+    private CurrencyEntity currencyId;
     /**
     * Сумма
     */
@@ -263,6 +270,31 @@ public class FullLeadEntity extends LeadEntity implements FullEntity<FullLeadEnt
     */
     @JsonProperty("LAST_ACTIVITY_BY")
     private UserEntity lastActivityBy;
+    /**
+    * Телефон
+    */
+    @JsonProperty("PHONE")
+    private List<MultifieldItem> phone;
+    /**
+    * E-mail
+    */
+    @JsonProperty("EMAIL")
+    private List<MultifieldItem> email;
+    /**
+    * Сайт
+    */
+    @JsonProperty("WEB")
+    private List<MultifieldItem> web;
+    /**
+    * Мессенджер
+    */
+    @JsonProperty("IM")
+    private List<MultifieldItem> im;
+    /**
+    * LINK
+    */
+    @JsonProperty("LINK")
+    private List<MultifieldItem> link;
 
     @Override
     public FullLeadEntity getFull(BitrixClient client) {

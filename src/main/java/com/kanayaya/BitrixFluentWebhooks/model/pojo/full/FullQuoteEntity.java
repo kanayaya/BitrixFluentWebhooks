@@ -29,6 +29,11 @@ public class FullQuoteEntity extends QuoteEntity implements FullEntity<FullQuote
     @JsonProperty("STATUS_ID")
     private StatusEntity statusId;
     /**
+    * Валюта
+    */
+    @JsonProperty("CURRENCY_ID")
+    private CurrencyEntity currencyId;
+    /**
     * Сумма
     */
     @JsonProperty("OPPORTUNITY")

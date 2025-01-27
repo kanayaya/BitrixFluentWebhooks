@@ -2,8 +2,8 @@ package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
-import com.kanayaya.BitrixFluentWebhooks.model.enums.YN;
-import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.CurrencyEntity;
+import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
 import java.time.OffsetDateTime;
 
