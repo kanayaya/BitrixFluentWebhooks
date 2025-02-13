@@ -7,6 +7,7 @@ import com.kanayaya.BitrixFluentWebhooks.api.Method;
 import com.kanayaya.BitrixFluentWebhooks.api.methods.UserMethods;
 import com.kanayaya.BitrixFluentWebhooks.exceptions.BitrixException;
 import com.kanayaya.BitrixFluentWebhooks.exceptions.ExceptionHandler;
+import com.kanayaya.BitrixFluentWebhooks.model.jackson.ObjectMapperUtils;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -19,6 +20,9 @@ public interface BitrixClient {
     String host();
     HttpClient client();
     HttpRequest request(Method method, Map<String, Object> params);
+    default ObjectMapper getMapper() {
+        return ObjectMapperUtils.newMapper();
+    }
     default JsonNode invoke(Method method) {
         return invoke(method, null);
     }
@@ -33,7 +37,7 @@ public interface BitrixClient {
             throw new BitrixException("Request interrupted", e);
         }
         try {
-            JsonNode responseNode = new ObjectMapper().readTree(response.body());
+            JsonNode responseNode = getMapper().readTree(response.body());
             ExceptionHandler.handleResponse(responseNode);
             return responseNode;
         } catch (JsonProcessingException e) {

@@ -10,7 +10,7 @@ import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.UserEntity;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-public class FullUserEntity extends UserEntity implements FullEntity<FullUserEntity> {
+public class FullUserEntity extends UserEntity {
     @JsonProperty("ACTIVE")
     private boolean isActive;
     @JsonProperty("NAME")

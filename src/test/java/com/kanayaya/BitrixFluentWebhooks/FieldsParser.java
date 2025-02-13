@@ -7,8 +7,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
 import com.kanayaya.BitrixFluentWebhooks.api.request.filter.MutableFilter;
+import com.kanayaya.BitrixFluentWebhooks.model.Table;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.MultipleField;
+import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.StringField;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.*;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.BitrixFile;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.MultifieldItem;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullCompanyEntity;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullDealEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullUserEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.ActivityCommunication;
@@ -38,7 +45,7 @@ public class FieldsParser {
     private static final String ENTITY_TEMPLATE = new Scanner(FieldsParser.class.getClassLoader().getResourceAsStream("templates/entityTemplate.txt")).useDelimiter("\\Z").next();
     private static final String FULL_ENTITY_TEMPLATE = new Scanner(FieldsParser.class.getClassLoader().getResourceAsStream("templates/fullEntityTemplate.txt")).useDelimiter("\\Z").next();
     private static final String FIELD_TEMPLATE = new Scanner(FieldsParser.class.getClassLoader().getResourceAsStream("templates/fieldTemplate.txt")).useDelimiter("\\Z").next();
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper mapper = TEST_CLIENT.getMapper();
     private static final List<Method> simpleMethods = List.of(
             Method.USER_FIELDS
     );
@@ -55,7 +62,6 @@ public class FieldsParser {
             Method.CRM_LEAD_FIELDS,
             Method.CRM_STATUS_FIELDS,
             Method.CRM_QUOTE_FIELDS
-
     );
     public static void main(String[] args) throws IOException {
         mkdirs();
@@ -109,7 +115,7 @@ public class FieldsParser {
             File fullPojo = new File(FULL_POJOS_PATH + "Full" + className + "Entity.java");
             if ( ! fullPojo.exists()) fullPojo.createNewFile();
 
-            write(String.format(FULL_ENTITY_TEMPLATE, className, className, className, className, formattedFiedls, className), fullPojo.getPath());
+            write(String.format(FULL_ENTITY_TEMPLATE, className, className, className, formattedFiedls, className), fullPojo.getPath());
 
         }
     }
@@ -169,6 +175,11 @@ public class FieldsParser {
         types.put("crm_lead", "LeadField<%s> %s = new LeadField<>(\"%s\");");
         types.put("crm_contact", "ContactField<%s> %s = new ContactField<>(\"%s\");");
         types.put("crm_deal", "DealField<%s> %s = new DealField<>(\"%s\");");
+        types.put("crm_currency", "CurrencyField<%s> %s = new CurrencyField<>(\"%s\")");
+        types.put("crm_quote", "QuoteField<%s> %s = new QuoteField<>(\"%s\")");
+        types.put("file", "// field %s %s %s");
+        types.put("diskfile", "// field %s %s %s");
+        types.put("crm_multifield", "MultipleField<%s, MultifieldItem, StringField<123>> %s = new MultipleField<>(\"%s\", new StringField<>(123));");
     }
     private static final Map<String, String> javaTypes = new HashMap<>();
     static {
@@ -194,6 +205,11 @@ public class FieldsParser {
         javaTypes.put("crm_lead", LeadEntity.class.getSimpleName());
         javaTypes.put("crm_contact", ContactEntity.class.getSimpleName());
         javaTypes.put("crm_deal", DealEntity.class.getSimpleName());
+        javaTypes.put("crm_currency", CurrencyEntity.class.getSimpleName());
+        javaTypes.put("crm_quote", QuoteEntity.class.getSimpleName());
+        javaTypes.put("file", BitrixFile.class.getSimpleName());
+        javaTypes.put("diskfile", BitrixFile.class.getSimpleName());
+        javaTypes.put("crm_multifield", "List<" + MultifieldItem.class.getSimpleName() + ">");
     }
 
     @Test
@@ -235,8 +251,16 @@ public class FieldsParser {
     }
 
     @Test
-    public void printDeals() {
-        System.out.println(TEST_CLIENT.invoke(Method.CRM_DEAL_LIST).toPrettyString());
+    public void printDeals() throws JsonProcessingException {
+        System.out.println(TEST_CLIENT.invoke(Method.CRM_ITEM_FIELDS, Map.of("entityTypeId", 1036) ).toPrettyString());
+        System.out.println(TEST_CLIENT.invoke(Method.CRM_ITEM_LIST, Map.of("entityTypeId", 1036)).toPrettyString());
+        JsonNode companies = TEST_CLIENT.invoke(Method.CRM_COMPANY_LIST, Map.of("select", List.of("*", "EMAIL", "PHONE"))).get("result");
+        List<FullCompanyEntity> l = TEST_CLIENT.getMapper().treeToValue(companies, TEST_CLIENT.getMapper().getTypeFactory().constructCollectionType(List.class, FullCompanyEntity.class));
+        System.out.println(l.get(0));
+        System.out.println(companies.toPrettyString());
+        JsonNode result = TEST_CLIENT.invoke(Method.CRM_DEAL_GET, Map.of("id", 1)).get("result");
+        System.out.println(result.toPrettyString());
+        System.out.println(TEST_CLIENT.getMapper().treeToValue(result, FullDealEntity.class));
         //http://localhost/bitrix/tools/crm_show_file.php?fileId=49&ownerTypeId=6&ownerId=2&auth=
     }
 

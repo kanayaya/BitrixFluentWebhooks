@@ -9,7 +9,7 @@ import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-public class FullLeadEntity extends LeadEntity implements FullEntity<FullLeadEntity> {
+public class FullLeadEntity extends LeadEntity {
     /**
     * ID
     */
@@ -274,30 +274,25 @@ public class FullLeadEntity extends LeadEntity implements FullEntity<FullLeadEnt
     * Телефон
     */
     @JsonProperty("PHONE")
-    private List<MultifieldItem> phone;
+    private List<MultifieldItem<String>> phone;
     /**
     * E-mail
     */
     @JsonProperty("EMAIL")
-    private List<MultifieldItem> email;
+    private List<MultifieldItem<String>> email;
     /**
     * Сайт
     */
     @JsonProperty("WEB")
-    private List<MultifieldItem> web;
+    private List<MultifieldItem<String>> web;
     /**
     * Мессенджер
     */
     @JsonProperty("IM")
-    private List<MultifieldItem> im;
+    private List<MultifieldItem<String>> im;
     /**
     * LINK
     */
     @JsonProperty("LINK")
-    private List<MultifieldItem> link;
-
-    @Override
-    public FullLeadEntity getFull(BitrixClient client) {
-        return this;
-    }
+    private List<MultifieldItem<String>> link;
 }

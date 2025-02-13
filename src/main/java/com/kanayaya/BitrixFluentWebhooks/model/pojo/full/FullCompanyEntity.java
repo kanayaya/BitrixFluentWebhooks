@@ -10,7 +10,7 @@ import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-public class FullCompanyEntity extends CompanyEntity implements FullEntity<FullCompanyEntity> {
+public class FullCompanyEntity extends CompanyEntity {
     /**
     * ID
     */
@@ -270,30 +270,93 @@ public class FullCompanyEntity extends CompanyEntity implements FullEntity<FullC
     * Телефон
     */
     @JsonProperty("PHONE")
-    private List<MultifieldItem> phone;
+    private List<MultifieldItem<String>> phone;
     /**
     * E-mail
     */
     @JsonProperty("EMAIL")
-    private List<MultifieldItem> email;
+    private List<MultifieldItem<String>> email;
     /**
     * Сайт
     */
     @JsonProperty("WEB")
-    private List<MultifieldItem> web;
+    private List<MultifieldItem<String>> web;
     /**
     * Мессенджер
     */
     @JsonProperty("IM")
-    private List<MultifieldItem> im;
+    private List<MultifieldItem<String>> im;
     /**
     * LINK
     */
     @JsonProperty("LINK")
-    private List<MultifieldItem> link;
+    private List<MultifieldItem<String>> link;
 
     @Override
-    public FullCompanyEntity getFull(BitrixClient client) {
-        return this;
+    public <FULL extends CompanyEntity> FULL getFull(BitrixClient client, Class<? extends FULL> clazz) {
+        if (getClass().equals(clazz)) return (FULL) this;
+        return super.getFull(client, clazz);
+    }
+
+    @Override
+    public String toString() {
+        return "FullCompanyEntity{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", companyType=" + companyType +
+                ", logo=" + logo +
+                ", address='" + address + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", addressCity='" + addressCity + '\'' +
+                ", addressPostalCode='" + addressPostalCode + '\'' +
+                ", addressRegion='" + addressRegion + '\'' +
+                ", addressProvince='" + addressProvince + '\'' +
+                ", addressCountry='" + addressCountry + '\'' +
+                ", addressCountryCode='" + addressCountryCode + '\'' +
+                ", addressLocAddrId=" + addressLocAddrId +
+                ", addressLegal='" + addressLegal + '\'' +
+                ", regAddress='" + regAddress + '\'' +
+                ", regAddress2='" + regAddress2 + '\'' +
+                ", regAddressCity='" + regAddressCity + '\'' +
+                ", regAddressPostalCode='" + regAddressPostalCode + '\'' +
+                ", regAddressRegion='" + regAddressRegion + '\'' +
+                ", regAddressProvince='" + regAddressProvince + '\'' +
+                ", regAddressCountry='" + regAddressCountry + '\'' +
+                ", regAddressCountryCode='" + regAddressCountryCode + '\'' +
+                ", regAddressLocAddrId=" + regAddressLocAddrId +
+                ", bankingDetails='" + bankingDetails + '\'' +
+                ", industry=" + industry +
+                ", employees=" + employees +
+                ", currencyId=" + currencyId +
+                ", revenue=" + revenue +
+                ", opened=" + opened +
+                ", comments='" + comments + '\'' +
+                ", hasPhone=" + hasPhone +
+                ", hasEmail=" + hasEmail +
+                ", hasImol=" + hasImol +
+                ", isMyCompany=" + isMyCompany +
+                ", assignedById=" + assignedById +
+                ", createdById=" + createdById +
+                ", modifyById=" + modifyById +
+                ", dateCreate=" + dateCreate +
+                ", dateModify=" + dateModify +
+                ", contactId=" + contactId +
+                ", leadId=" + leadId +
+                ", originatorId='" + originatorId + '\'' +
+                ", originId='" + originId + '\'' +
+                ", originVersion='" + originVersion + '\'' +
+                ", utmSource='" + utmSource + '\'' +
+                ", utmMedium='" + utmMedium + '\'' +
+                ", utmCampaign='" + utmCampaign + '\'' +
+                ", utmContent='" + utmContent + '\'' +
+                ", utmTerm='" + utmTerm + '\'' +
+                ", lastActivityTime=" + lastActivityTime +
+                ", lastActivityBy=" + lastActivityBy +
+                ", phone=" + phone +
+                ", email=" + email +
+                ", web=" + web +
+                ", im=" + im +
+                ", link=" + link +
+                '}';
     }
 }

@@ -5,7 +5,7 @@ import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullUserEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
 
-public class UserEntity implements Entity<FullUserEntity> {
+public class UserEntity implements Entity<UserEntity, FullUserEntity, Integer> {
     @JsonProperty("ID")
     private int id;
     public UserEntity() {
@@ -15,7 +15,7 @@ public class UserEntity implements Entity<FullUserEntity> {
         this.id = id;
     }
     @Override
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -25,7 +25,12 @@ public class UserEntity implements Entity<FullUserEntity> {
     }
 
     @Override
+    public <ALT extends UserEntity> ALT getFull(BitrixClient client, Class<? extends ALT> clazz) {
+        return null;
+    }
+
+    @Override
     public FullUserEntity getFull(BitrixClient client) {
-        return client.user().get(filter -> filter.field(User.ID).eq(getId())).send().get(0);
+        return client.user().get(userFilter -> userFilter.field(User.ID).eq(getId())).send().get(0);
     }
 }

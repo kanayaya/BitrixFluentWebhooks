@@ -120,21 +120,5 @@ public interface BitrixSessionClient extends BitrixClient {
             params.put("sessid", bitrixSessionId);
             return new BitrixFormRequest(uri, params);
         }
-        public JsonNode sendRequest(Method method, Map<String, Object> params) {
-            HttpRequest request = prepareRequest(method, params);
-            HttpResponse<String> response;
-            try {
-                response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new BitrixException("Request interrupted", e);
-            }
-            try {
-                return new ObjectMapper().readTree(response.body());
-            } catch (JsonProcessingException e) {
-                throw new BitrixException("Server response doesn't match json rules", e);
-            }
-        }
     }
 }

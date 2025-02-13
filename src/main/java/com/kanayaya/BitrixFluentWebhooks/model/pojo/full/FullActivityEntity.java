@@ -9,7 +9,7 @@ import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
 import java.time.OffsetDateTime;
 
-public class FullActivityEntity extends ActivityEntity implements FullEntity<FullActivityEntity> {
+public class FullActivityEntity extends ActivityEntity {
     /**
     * ID
     */
@@ -227,7 +227,10 @@ public class FullActivityEntity extends ActivityEntity implements FullEntity<Ful
     private YN isIncomingChannel;
 
     @Override
-    public FullActivityEntity getFull(BitrixClient client) {
-        return this;
+    public <FULL extends ActivityEntity> FULL getFull(BitrixClient client, Class<? extends FULL> clazz) {
+        if (getClass().equals(clazz)) {
+            return (FULL) this;
+        }
+        return super.getFull(client, clazz);
     }
 }

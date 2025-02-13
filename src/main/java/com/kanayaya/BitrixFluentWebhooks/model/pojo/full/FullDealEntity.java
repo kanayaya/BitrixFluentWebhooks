@@ -7,7 +7,7 @@ import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
 import java.time.OffsetDateTime;
 
-public class FullDealEntity extends DealEntity implements FullEntity<FullDealEntity> {
+public class FullDealEntity extends DealEntity {
     /**
     * ID
     */

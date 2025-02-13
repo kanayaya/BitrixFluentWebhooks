@@ -3,9 +3,8 @@ package com.kanayaya.BitrixFluentWebhooks.model.pojo.idable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullActivityEntity;
-import com.kanayaya.BitrixFluentWebhooks.model.tables.Activity;
 
-public class ActivityEntity implements Entity<FullActivityEntity> {
+public class ActivityEntity implements Entity<ActivityEntity, FullActivityEntity, Integer> {
     @JsonProperty("ID")
     private int id;
     public ActivityEntity() {
@@ -15,7 +14,7 @@ public class ActivityEntity implements Entity<FullActivityEntity> {
         this.id = id;
     }
     @Override
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -25,7 +24,12 @@ public class ActivityEntity implements Entity<FullActivityEntity> {
     }
 
     @Override
-    public FullActivityEntity getFull(BitrixClient client) {
+    public <FULL extends ActivityEntity> FULL getFull(BitrixClient client, Class<? extends FULL> clazz) {
         return null;
+    }
+
+    @Override
+    public FullActivityEntity getFull(BitrixClient client) {
+        return getFull(client, FullActivityEntity.class);
     }
 }

@@ -1,13 +1,10 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.idable;
 
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
-import com.kanayaya.BitrixFluentWebhooks.BitrixWebhookClient;
-import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullEntity;
 
-public interface Entity<FULL extends FullEntity<FULL>> {
-    int getId();
+public interface Entity<SELF extends Entity<SELF, FULL, ID_TYPE>, FULL extends SELF, ID_TYPE> {
+    ID_TYPE getId();
     boolean delete(BitrixClient client);
-
+    <ALT extends SELF> ALT getFull(BitrixClient client, Class<? extends ALT> clazz);
     FULL getFull(BitrixClient client);
-
 }

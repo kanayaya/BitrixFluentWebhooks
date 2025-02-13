@@ -2,15 +2,15 @@ package com.kanayaya.BitrixFluentWebhooks.model.pojo.idable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
-import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullContactEntity;
+import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullEnumEntity;
 
-public class ContactEntity implements Entity<ContactEntity, FullContactEntity, Integer> {
+public class EnumEntity implements Entity<EnumEntity, FullEnumEntity, Integer> {
     @JsonProperty("ID")
     private int id;
-    public ContactEntity() {
+    public EnumEntity() {
 
     }
-    public ContactEntity(int id) {
+    public EnumEntity(int id) {
         this.id = id;
     }
     @Override
@@ -24,14 +24,12 @@ public class ContactEntity implements Entity<ContactEntity, FullContactEntity, I
     }
 
     @Override
-    public <ALT extends ContactEntity> ALT getFull(BitrixClient client, Class<? extends ALT> clazz) {
+    public <ALT extends EnumEntity> ALT getFull(BitrixClient client, Class<? extends ALT> clazz) {
         return null;
     }
 
     @Override
-    public FullContactEntity getFull(BitrixClient client) {
+    public FullEnumEntity getFull(BitrixClient client) {
         return null;
     }
-
-
 }

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.ActivityCommunicationEntity;
 
-public class FullActivityCommunicationEntity extends ActivityCommunicationEntity implements FullEntity<FullActivityCommunicationEntity> {
+public class FullActivityCommunicationEntity extends ActivityCommunicationEntity {
     /**
     * ID
     */
@@ -37,7 +37,10 @@ public class FullActivityCommunicationEntity extends ActivityCommunicationEntity
     private String value;
 
     @Override
-    public FullActivityCommunicationEntity getFull(BitrixClient client) {
-        return this;
+    public <FULL extends ActivityCommunicationEntity> FULL getFull(BitrixClient client, Class<? extends FULL> clazz) {
+        if (clazz.equals(getClass())) {
+            return (FULL) this;
+        }
+        return super.getFull(client, clazz);
     }
 }

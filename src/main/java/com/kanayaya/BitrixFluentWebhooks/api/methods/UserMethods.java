@@ -50,7 +50,7 @@ public class UserMethods extends RequestStorage {
 
     public FullUserEntity current() {
         try {
-            return new ObjectMapper().treeToValue(client.invoke(Method.USER_CURRENT).get("result"), FullUserEntity.class);
+            return client.getMapper().treeToValue(client.invoke(Method.USER_CURRENT).get("result"), FullUserEntity.class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -66,7 +66,7 @@ public class UserMethods extends RequestStorage {
     public class GetUser {
         private GetUser() {}
         public List<FullUserEntity> send() {
-            ObjectMapper mapper = ObjectMapperUtils.newMapper();
+            ObjectMapper mapper = client.getMapper();
             JsonNode responseNode = client.invoke(Method.USER_GET, params);
             JsonNode resultNode = responseNode.get("result");
             JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, FullUserEntity.class);
