@@ -1,8 +1,6 @@
 package com.kanayaya.BitrixFluentWebhooks;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
 import com.kanayaya.BitrixFluentWebhooks.api.request.BitrixFormRequest;
 import com.kanayaya.BitrixFluentWebhooks.exceptions.BitrixException;
@@ -23,8 +21,15 @@ import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public interface BitrixSessionClient extends BitrixClient {
+public interface BitrixSessionClient extends BitrixRestClient, BitrixAjaxClient {
     SessionManager getSessionManager();
+
+    @Override
+    default HttpResponse<String> invokeAjax(String componentNamespace, String componentName, Mode mode, String action, Map<String, Object> params) {
+        Map<String, Object> newParams = new HashMap<>(params);
+        newParams.put("sessid", getSessionManager().bitrixSessionId);
+        return BitrixAjaxClient.super.invokeAjax(componentNamespace, componentName, mode, action, newParams);
+    }
 
     @Override
     default String host() {
@@ -44,11 +49,11 @@ public interface BitrixSessionClient extends BitrixClient {
     @Override
     default JsonNode invoke(Method method, Map<String, Object> params) {
         try {
-            return BitrixClient.super.invoke(method, params);
+            return BitrixRestClient.super.invoke(method, params);
         } catch (BitrixNotAuthorizedException e) {
             getSessionManager().refresh();
         }
-        return BitrixClient.super.invoke(method, params);
+        return BitrixRestClient.super.invoke(method, params);
     }
 
     class SessionManager {

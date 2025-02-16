@@ -1,26 +1,17 @@
 package com.kanayaya.BitrixFluentWebhooks;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
-import com.kanayaya.BitrixFluentWebhooks.api.request.filter.MutableFilter;
-import com.kanayaya.BitrixFluentWebhooks.model.Table;
-import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.MultipleField;
-import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.StringField;
-import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.entities.*;
+import com.kanayaya.BitrixFluentWebhooks.exceptions.BitrixException;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.BitrixFile;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.MultifieldItem;
-import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullCompanyEntity;
-import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullDealEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullUserEntity;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
-import com.kanayaya.BitrixFluentWebhooks.model.tables.ActivityCommunication;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
-import com.kanayaya.BitrixFluentWebhooks.session.SessionTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -69,7 +60,7 @@ public class FieldsParser {
         BitrixWebhookClient testClient = BitrixWebhookClientTest.TEST_CLIENT;
         for (Method m :
                 crmMethods) {
-            String result = testClient.invoke(m).get("result").toString();
+            String result = testClient.invoke(m).toString();
             JavaType type = mapper.getTypeFactory().constructMapType(Map.class, String.class, CRMField.class);
             Map<String, CRMField> fields = mapper.readValue(result, type);
             String className = Stream.of(m.getName().substring(4, m.getName().length() - 7).split("\\.")).map(FieldsParser::capitate).collect(Collectors.joining());
@@ -213,11 +204,8 @@ public class FieldsParser {
     }
 
     @Test
-    public void userFields() throws JsonProcessingException {
-        String fields = TEST_CLIENT.invoke(Method.CRM_DEAL_FIELDS, Map.of("TASK_ID", 1)).toPrettyString();
-        String user = TEST_CLIENT.invoke(Method.USER_GET, Map.of("FILTER", new MutableFilter<User>().field(User.ID).eq(4).getParams(), "ADMIN_MODE", true)).toPrettyString();
-        System.out.println(user);
-        FullUserEntity userEntity = TEST_CLIENT.user().get(userFilter -> userFilter.field(User.ID).eq(4)).send().get(0);
+    public void userFields() {
+        FullUserEntity userEntity = TEST_CLIENT.user().get(User.ID.eq(4)).send().get(0);
         System.out.println(userEntity);
     }
     @Test
@@ -251,17 +239,23 @@ public class FieldsParser {
     }
 
     @Test
-    public void printDeals() throws JsonProcessingException {
-        System.out.println(TEST_CLIENT.invoke(Method.CRM_ITEM_FIELDS, Map.of("entityTypeId", 1036) ).toPrettyString());
-        System.out.println(TEST_CLIENT.invoke(Method.CRM_ITEM_LIST, Map.of("entityTypeId", 1036)).toPrettyString());
-        JsonNode companies = TEST_CLIENT.invoke(Method.CRM_COMPANY_LIST, Map.of("select", List.of("*", "EMAIL", "PHONE"))).get("result");
-        List<FullCompanyEntity> l = TEST_CLIENT.getMapper().treeToValue(companies, TEST_CLIENT.getMapper().getTypeFactory().constructCollectionType(List.class, FullCompanyEntity.class));
-        System.out.println(l.get(0));
-        System.out.println(companies.toPrettyString());
-        JsonNode result = TEST_CLIENT.invoke(Method.CRM_DEAL_GET, Map.of("id", 1)).get("result");
-        System.out.println(result.toPrettyString());
-        System.out.println(TEST_CLIENT.getMapper().treeToValue(result, FullDealEntity.class));
+    public void printDeals() {
+        JsonNode activities = TEST_CLIENT.invoke(Method.CRM_ACTIVITY_LIST);
+        System.out.println(activities);
+        JsonNode binds = TEST_CLIENT.invoke(Method.CRM_ACTIVITY_BINDING_LIST, Map.of("activityId", 1));
+        System.out.println(binds);
         //http://localhost/bitrix/tools/crm_show_file.php?fileId=49&ownerTypeId=6&ownerId=2&auth=
+    }
+    @Test
+    public void printCategories() {
+        for (Ownertype etId :
+                Ownertype.values()) {
+            try {
+                System.out.println(etId.getName() + ": " + TEST_CLIENT.invoke(Method.CRM_CATEGORY_FIELDS, Map.of("entityTypeId", etId.getId())).toPrettyString());
+            } catch (BitrixException e) {
+                System.out.println(etId.getName() + " не поддерживает категории или требует что-то ещё: " + e);
+            }
+        }
     }
 
     private static String capitate(String s) {

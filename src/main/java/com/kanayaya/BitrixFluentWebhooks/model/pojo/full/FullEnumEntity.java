@@ -1,8 +1,7 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
-import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
+import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
 public class FullEnumEntity extends EnumEntity {
@@ -28,7 +27,7 @@ public class FullEnumEntity extends EnumEntity {
     private String symbolCodeShort;
 
     @Override
-    public FullEnumEntity getFull(BitrixClient client) {
+    public FullEnumEntity getFull(BitrixRestClient client) {
         return this;
     }
 }

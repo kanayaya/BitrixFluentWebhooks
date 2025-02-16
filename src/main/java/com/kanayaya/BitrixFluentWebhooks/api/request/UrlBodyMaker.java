@@ -10,6 +10,9 @@ import java.util.Map;
 
 public class UrlBodyMaker<TABLE extends Table> {
     public static String buildQueryString(Map<String, Object> params) {
+        if (params.isEmpty()) {
+            return "";
+        }
         StringBuilder queryString = new StringBuilder();
         buildQueryString(params, queryString, "");
         return queryString.toString();

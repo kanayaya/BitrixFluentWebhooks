@@ -10,7 +10,8 @@ public class ExceptionHandler {
             "ACCESS_DENIED", BitrixAccessDeniedException::new,
             "access_denied: User not authorized", BitrixNotAuthorizedException::new,
             "ERROR_ARGUMENT", BitrixIllegalParamsException::new,
-            "WRONG_AUTH_TYPE", BitrixOauth2RequiredException::new
+            "WRONG_AUTH_TYPE", BitrixOauth2RequiredException::new,
+            "INVALID_CREDENTIALS", BitrixAccessDeniedException::new
     );
 
     public static void handleResponse(JsonNode response) {

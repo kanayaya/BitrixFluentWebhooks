@@ -1,5 +1,6 @@
 package com.kanayaya.BitrixFluentWebhooks.session;
 
+import com.kanayaya.BitrixFluentWebhooks.BitrixAjaxClient;
 import com.kanayaya.BitrixFluentWebhooks.BitrixSessionClient;
 import com.kanayaya.BitrixFluentWebhooks.BitrixWebhookClient;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
@@ -7,6 +8,12 @@ import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -30,7 +37,7 @@ public class SessionTest {
         }
     };
     public static BitrixSessionClient test = new BitrixSessionClient() {
-        private final SessionManager manager = new SessionManager("http://localhost", "test", properties.getProperty("test_password"), () -> properties.getProperty("test_password"), false);
+        private final SessionManager manager = new SessionManager("http://localhost", properties.getProperty("admin_login"),  properties.getProperty("admin_password"), () -> properties.getProperty("test_password"), false);
         @Override
         public SessionManager getSessionManager() {
             return manager;
@@ -45,18 +52,16 @@ public class SessionTest {
         System.out.println(test.user().current());
 
 
-        System.out.println(admin.user().get(filter -> filter.field(User.NAME).contains("ст")).send());
-        System.out.println(test.user().get(filter -> filter.field(User.NAME).contains("ст")).send());
+        System.out.println(admin.user().get(User.NAME.contains("ст")).send());
+        System.out.println(test.user().get(User.NAME.contains("ст")).send());
     }
     @Test
-    public void bruteForce() throws InterruptedException {
-        Random random = new Random();
-        int count = 0;
-        while (true) {
-            admin.invoke(Method.CRM_DEAL_LIST);
-            System.out.print(++count + (count % 50 == 0? "\n" : " "));
-            sleep(random.nextInt(9000) + 1000);
-        }
+    public void bruteForce() {
+        HttpResponse<String> r = admin.invokeAjax(
+                "bitrix", "crm.activity.list",
+                BitrixAjaxClient.Mode.AJAX, "getList",
+                Map.of("fieldId", "ID"));
+        System.out.println(r.body());
     }
     @Test
     public void waiting() throws InterruptedException {

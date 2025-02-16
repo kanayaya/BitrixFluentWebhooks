@@ -1,6 +1,6 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo;
 
-import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,7 +27,7 @@ public class ContactPhotoFile implements BitrixFile {
     }
 
     @Override
-    public InputStream get(BitrixClient client) {
+    public InputStream get(BitrixRestClient client) {
         String uri = (downloadUrl.startsWith("http")? "" : client.host().endsWith("/")? client.host().substring(0, client.host().length() - 1) : client.host()) +
                 downloadUrl;
         try {

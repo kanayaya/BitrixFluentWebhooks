@@ -2,7 +2,7 @@ package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.BitrixFile;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
@@ -227,7 +227,7 @@ public class FullActivityEntity extends ActivityEntity {
     private YN isIncomingChannel;
 
     @Override
-    public <FULL extends ActivityEntity> FULL getFull(BitrixClient client, Class<? extends FULL> clazz) {
+    public <FULL extends ActivityEntity> FULL getFull(BitrixRestClient client, Class<? extends FULL> clazz) {
         if (getClass().equals(clazz)) {
             return (FULL) this;
         }

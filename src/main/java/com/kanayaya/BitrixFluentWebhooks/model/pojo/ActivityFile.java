@@ -1,6 +1,6 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo;
 
-import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +23,7 @@ public class ActivityFile implements BitrixFile {
         return id;
     }
     @Override
-    public InputStream get(BitrixClient client) {
+    public InputStream get(BitrixRestClient client) {
         try {
             return client.client().send(
                     HttpRequest.newBuilder().uri(new URI(url)).GET().build(),

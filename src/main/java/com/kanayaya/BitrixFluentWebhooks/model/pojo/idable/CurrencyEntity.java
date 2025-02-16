@@ -1,7 +1,7 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.idable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullCurrencyEntity;
 
 public class CurrencyEntity implements Entity<CurrencyEntity, FullCurrencyEntity, String> {
@@ -22,17 +22,17 @@ public class CurrencyEntity implements Entity<CurrencyEntity, FullCurrencyEntity
         return currency;
     }
 
-    public boolean delete(BitrixClient client) {
+    public boolean delete(BitrixRestClient client) {
         return false;
     }
 
     @Override
-    public <ALT extends CurrencyEntity> ALT getFull(BitrixClient client, Class<? extends ALT> clazz) {
+    public <ALT extends CurrencyEntity> ALT getFull(BitrixRestClient client, Class<? extends ALT> clazz) {
         return null;
     }
 
     @Override
-    public FullCurrencyEntity getFull(BitrixClient client) {
+    public FullCurrencyEntity getFull(BitrixRestClient client) {
         return null;
     }
 }

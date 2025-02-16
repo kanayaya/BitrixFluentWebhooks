@@ -1,7 +1,7 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.CatalogEntity;
 
 public class FullCatalogEntity extends CatalogEntity {
@@ -32,7 +32,7 @@ public class FullCatalogEntity extends CatalogEntity {
     private String xmlId;
 
     @Override
-    public <FULL extends CatalogEntity> FULL getFull(BitrixClient client, Class<? extends FULL> clazz) {
+    public <FULL extends CatalogEntity> FULL getFull(BitrixRestClient client, Class<? extends FULL> clazz) {
         if (getClass().equals(clazz)) {
             return (FULL) this;
         }

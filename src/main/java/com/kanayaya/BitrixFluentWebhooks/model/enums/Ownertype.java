@@ -1,5 +1,7 @@
 package com.kanayaya.BitrixFluentWebhooks.model.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,6 +29,7 @@ public enum Ownertype {
         this.symbolCode = symbolCode;
         this.symbolCodeShort = symbolCodeShort;
     }
+    @JsonValue
     public int getId() {
         return id;
     }

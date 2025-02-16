@@ -1,7 +1,7 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.Timeman;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.Country;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.YN;
@@ -116,7 +116,7 @@ public class FullUserEntity extends UserEntity {
     @JsonProperty("USER_TYPE")
     private String user_type;
     @Override
-    public FullUserEntity getFull(BitrixClient client) {
+    public FullUserEntity getFull(BitrixRestClient client) {
         return this;
     }
 

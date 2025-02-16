@@ -1,7 +1,7 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.AddressEntity;
 
 public class FullAddressEntity extends AddressEntity {
@@ -72,7 +72,7 @@ public class FullAddressEntity extends AddressEntity {
     private Integer anchorId;
 
     @Override
-    public <FULL extends AddressEntity> FULL getFull(BitrixClient client, Class<? extends FULL> clazz) {
+    public <FULL extends AddressEntity> FULL getFull(BitrixRestClient client, Class<? extends FULL> clazz) {
         if (getClass().equals(clazz)) {
             return (FULL) this;
         }

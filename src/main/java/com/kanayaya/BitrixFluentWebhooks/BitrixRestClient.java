@@ -13,10 +13,9 @@ import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-public interface BitrixClient {
+public interface BitrixRestClient {
     String host();
     HttpClient client();
     HttpRequest request(Method method, Map<String, Object> params);
@@ -39,7 +38,7 @@ public interface BitrixClient {
         try {
             JsonNode responseNode = getMapper().readTree(response.body());
             ExceptionHandler.handleResponse(responseNode);
-            return responseNode;
+            return responseNode.get("result");
         } catch (JsonProcessingException e) {
             throw new BitrixException("Server response doesn't match json rules", e);
         }

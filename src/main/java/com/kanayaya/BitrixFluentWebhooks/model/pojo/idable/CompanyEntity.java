@@ -1,7 +1,7 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.idable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullCompanyEntity;
 
 public class CompanyEntity implements Entity<CompanyEntity, FullCompanyEntity, Integer> {
@@ -19,17 +19,17 @@ public class CompanyEntity implements Entity<CompanyEntity, FullCompanyEntity, I
     }
 
     @Override
-    public boolean delete(BitrixClient client) {
+    public boolean delete(BitrixRestClient client) {
         return false;
     }
 
     @Override
-    public <ALT extends CompanyEntity> ALT getFull(BitrixClient client, Class<? extends ALT> clazz) {
+    public <ALT extends CompanyEntity> ALT getFull(BitrixRestClient client, Class<? extends ALT> clazz) {
         return null;
     }
 
     @Override
-    public FullCompanyEntity getFull(BitrixClient client) {
+    public FullCompanyEntity getFull(BitrixRestClient client) {
         return null;
     }
 }

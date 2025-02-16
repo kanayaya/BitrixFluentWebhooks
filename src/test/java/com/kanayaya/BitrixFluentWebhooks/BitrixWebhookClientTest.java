@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BitrixWebhookClientTest {
     public static final BitrixWebhookClient TEST_CLIENT = new BitrixWebhookClient() {
         private final String token;
-
         {
             try { // watching for pass.txt in test resources
                 token = new BufferedReader(new InputStreamReader(BitrixWebhookClient.class.getClassLoader().getResourceAsStream("pass.txt"))).readLine();
@@ -40,7 +39,6 @@ public class BitrixWebhookClientTest {
     }
     @Test
     public void testGet() {
-        System.out.println(TEST_CLIENT.getUsersString("мин").toPrettyString());
         System.out.println(TEST_CLIENT.user().current());
     }
 

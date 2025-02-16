@@ -1,7 +1,7 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kanayaya.BitrixFluentWebhooks.BitrixClient;
+import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.YN;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
@@ -215,7 +215,7 @@ public class FullQuoteEntity extends QuoteEntity {
     private UserEntity lastActivityBy;
 
     @Override
-    public FullQuoteEntity getFull(BitrixClient client) {
+    public FullQuoteEntity getFull(BitrixRestClient client) {
         return this;
     }
 }
