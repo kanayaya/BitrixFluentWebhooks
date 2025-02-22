@@ -205,7 +205,7 @@ public class FieldsParser {
 
     @Test
     public void userFields() {
-        FullUserEntity userEntity = TEST_CLIENT.user().get(User.ID.eq(4)).send().get(0);
+        FullUserEntity userEntity = TEST_CLIENT.user().get(User.ID.eq(1)).send().get(0);
         System.out.println(userEntity);
     }
     @Test

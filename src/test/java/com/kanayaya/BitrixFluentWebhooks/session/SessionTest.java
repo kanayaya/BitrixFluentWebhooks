@@ -12,10 +12,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.lang.Thread.sleep;
@@ -56,12 +53,14 @@ public class SessionTest {
         System.out.println(test.user().get(User.NAME.contains("ст")).send());
     }
     @Test
-    public void bruteForce() {
+    public void bruteForce() throws URISyntaxException, IOException, InterruptedException {
         HttpResponse<String> r = admin.invokeAjax(
                 "bitrix", "crm.activity.list",
                 BitrixAjaxClient.Mode.AJAX, "getList",
                 Map.of("fieldId", "ID"));
         System.out.println(r.body());
+        HttpResponse<String> re = admin.client().send(HttpRequest.newBuilder().uri(new URI("http://localhost/bitrix/tools/crm_show_file.php?fileId=43&ownerTypeId=6&ownerId=1")).build(), HttpResponse.BodyHandlers.ofString());
+        System.out.println(re.headers());
     }
     @Test
     public void waiting() throws InterruptedException {
@@ -81,5 +80,9 @@ public class SessionTest {
         admin.invoke(Method.CRM_DEAL_LIST);
         sleep(1000 * 60 * 30);
         admin.invoke(Method.CRM_DEAL_LIST);
+    }
+    @Test
+    public void usersTest() {
+        System.out.println(admin.user().get(User.ID.notIn(List.of(2, 3, 4, 1))).send());
     }
 }
