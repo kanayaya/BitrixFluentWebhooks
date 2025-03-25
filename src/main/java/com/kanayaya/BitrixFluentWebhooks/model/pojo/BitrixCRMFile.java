@@ -9,13 +9,13 @@ import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class ContactPhotoFile implements BitrixFile {
+public class BitrixCRMFile implements BitrixFile {
     private Integer id;
     private String showUrl;
     private String downloadUrl;
-    public ContactPhotoFile() {}
+    public BitrixCRMFile() {}
 
-    public ContactPhotoFile(Integer id, String showUrl, String downloadUrl) {
+    public BitrixCRMFile(Integer id, String showUrl, String downloadUrl) {
         this.id = id;
         this.showUrl = showUrl;
         this.downloadUrl = downloadUrl;

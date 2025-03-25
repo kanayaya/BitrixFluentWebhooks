@@ -1,6 +1,9 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.Timeman;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.Country;
@@ -8,9 +11,12 @@ import com.kanayaya.BitrixFluentWebhooks.model.enums.YN;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.UserEntity;
 
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FullUserEntity extends UserEntity {
+    private final Map<String, JsonNode> unrecognizedProperties = new HashMap<>();
     @JsonProperty("ACTIVE")
     private boolean isActive;
     @JsonProperty("NAME")
@@ -119,6 +125,17 @@ public class FullUserEntity extends UserEntity {
     public FullUserEntity getFull(BitrixRestClient client) {
         return this;
     }
+    @JsonAnySetter
+    protected void setUnrecognizedProperty(String key, JsonNode value) {
+        unrecognizedProperties.put(key, value);
+    }
+    @JsonAnyGetter
+    protected Map<String, JsonNode> getUnrecognizedProperties() {
+        return unrecognizedProperties;
+    }
+    public JsonNode getAdditionalField(String key) {
+        return unrecognizedProperties.get(key);
+    }
 
     @Override
     public String toString() {
@@ -173,6 +190,7 @@ public class FullUserEntity extends UserEntity {
                 ", uf_district='" + uf_district + '\'' +
                 ", uf_phone_inner='" + uf_phone_inner + '\'' +
                 ", user_type='" + user_type + '\'' +
+                ", unrecognizedProperties='" + unrecognizedProperties + '\'' +
                 '}';
     }
 }

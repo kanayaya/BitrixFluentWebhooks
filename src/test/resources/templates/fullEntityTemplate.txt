@@ -1,14 +1,34 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.enums.*;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.idable.*;
 
-public class Full%sEntity extends %sEntity implements FullEntity<Full%sEntity> {
+import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Full%sEntity extends %sEntity { //%s
+    private final Map<String, JsonNode> unrecognizedProperties = new HashMap<>();
 %s
     @Override
     public Full%sEntity getFull(BitrixClient client) {
         return this;
+    }
+    @JsonAnySetter
+    protected void setUnrecognizedProperty(String key, JsonNode value) {
+        unrecognizedProperties.put(key, value);
+    }
+    @JsonAnyGetter
+    protected Map<String, JsonNode> getUnrecognizedProperties() {
+        return unrecognizedProperties;
+    }
+    public JsonNode getAdditionalField(String key) {
+        return unrecognizedProperties.get(key);
     }
 }

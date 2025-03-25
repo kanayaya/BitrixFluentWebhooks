@@ -31,6 +31,6 @@ public class UserEntity implements Entity<UserEntity, FullUserEntity, Integer> {
 
     @Override
     public FullUserEntity getFull(BitrixRestClient client) {
-        return client.user().get(User.ID.eq(getId())).send().get(0);
+        return client.user().get().withFilter(User.ID.eq(getId())).get().get(0);
     }
 }

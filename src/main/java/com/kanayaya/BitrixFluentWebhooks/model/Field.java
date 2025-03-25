@@ -36,6 +36,10 @@ public class Field<TABLE extends Table, VALUE> {
     public Condition<TABLE>  notIn(Iterable<VALUE> values) {
         return new Condition<>("!", name, values);
     }
+    @SafeVarargs
+    public final Condition<TABLE> notIn(VALUE... values) {
+        return new Condition<>("!", name, values);
+    }
     public Condition<TABLE>  not(VALUE value) {
         return new Condition<>("!", name, value);
     }

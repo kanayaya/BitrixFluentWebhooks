@@ -49,8 +49,11 @@ public class SessionTest {
         System.out.println(test.user().current());
 
 
-        System.out.println(admin.user().get(User.NAME.contains("ст")).send());
-        System.out.println(test.user().get(User.NAME.contains("ст")).send());
+        System.out.println(admin.user().get()
+                .withFilter(User.NAME.contains("ст"), User.ID.notIn(100))
+                .withSort(User.NAME).asc()
+                .get());
+        System.out.println(test.user().get().withFilter(User.NAME.contains("ст")).get());
     }
     @Test
     public void bruteForce() throws URISyntaxException, IOException, InterruptedException {
@@ -83,6 +86,26 @@ public class SessionTest {
     }
     @Test
     public void usersTest() {
-        System.out.println(admin.user().get(User.ID.notIn(List.of(2, 3, 4, 1))).send());
+        System.out.println(admin.invoke(Method.USER_GET, Map.of("filter", Map.of("UF_FROM_AMO", "N"), "select", "ID")));
+    }
+    @Test
+    public void activitiesTest() {
+        System.out.println(admin.invoke(Method.CRM_ACTIVITY_LIST, Map.of("select", "BINDINGS")).toPrettyString());
+        System.out.println(admin.invoke(Method.SERVER_TIME));
+    }
+    @Test
+    public void currenciesTest() {
+        //System.out.println(admin.invoke(Method.CRM_CURRENCY_LOCALIZATIONS_FIELDS).toPrettyString());
+        System.out.println(admin.invoke(Method.CRM_CURRENCY_LOCALIZATIONS_GET, Map.of("id", "UAH")).toPrettyString());
+        System.out.println(admin.invoke(Method.CRM_CURRENCY_LIST, Map.of("select", List.of("LANG"))).toPrettyString());
+    }
+    @Test
+    public void dealsTest() {
+        System.out.println(admin.invoke(Method.CRM_DEAL_LIST).toPrettyString());
+    }
+    @Test
+    public void productsTest() {
+        System.out.println(admin.invoke(Method.CRM_PRODUCT_LIST, Map.of("select", List.of("*", "PROPERTY_61"))).toPrettyString());
+        System.out.println(admin.invoke(Method.DISK_FILE_GET, Map.of("id", 127)).toPrettyString());
     }
 }

@@ -48,11 +48,13 @@ public class FieldsParser {
             Method.CRM_CONTACT_FIELDS,
             Method.CRM_COMPANY_FIELDS,
             Method.CRM_CURRENCY_FIELDS,
+            Method.CRM_CURRENCY_LOCALIZATIONS_FIELDS,
             Method.CRM_DEAL_FIELDS,
             Method.CRM_ENUM_FIELDS,
             Method.CRM_LEAD_FIELDS,
             Method.CRM_STATUS_FIELDS,
-            Method.CRM_QUOTE_FIELDS
+            Method.CRM_QUOTE_FIELDS,
+            Method.CRM_PRODUCT_FIELDS
     );
     public static void main(String[] args) throws IOException {
         mkdirs();
@@ -141,6 +143,8 @@ public class FieldsParser {
         public boolean isDeprecated;
         public JsonNode settings;
         public String statusType;
+        public String propertyType;
+        public String userType;
     }
     private static final Map<String, String> types = new HashMap<>();
     static {
@@ -171,6 +175,7 @@ public class FieldsParser {
         types.put("file", "// field %s %s %s");
         types.put("diskfile", "// field %s %s %s");
         types.put("crm_multifield", "MultipleField<%s, MultifieldItem, StringField<123>> %s = new MultipleField<>(\"%s\", new StringField<>(123));");
+        types.put("product_file", "// field %s %s %s");
     }
     private static final Map<String, String> javaTypes = new HashMap<>();
     static {
@@ -201,12 +206,14 @@ public class FieldsParser {
         javaTypes.put("file", BitrixFile.class.getSimpleName());
         javaTypes.put("diskfile", BitrixFile.class.getSimpleName());
         javaTypes.put("crm_multifield", "List<" + MultifieldItem.class.getSimpleName() + ">");
+        types.put("product_file", BitrixFile.class.getSimpleName());
     }
 
     @Test
     public void userFields() {
-        FullUserEntity userEntity = TEST_CLIENT.user().get(User.ID.eq(1)).send().get(0);
+        FullUserEntity userEntity = TEST_CLIENT.user().get().withFilter(User.ID.eq(1)).get().get(0);
         System.out.println(userEntity);
+        System.out.println(TEST_CLIENT.user().get().withAdminMode(true).all());
     }
     @Test
     public void printEnums() throws IOException {
