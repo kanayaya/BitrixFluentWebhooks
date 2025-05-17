@@ -7,7 +7,10 @@ import com.kanayaya.BitrixFluentWebhooks.api.Method;
 import com.kanayaya.BitrixFluentWebhooks.model.tables.User;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
@@ -40,21 +43,21 @@ public class SessionTest {
             return manager;
         }
     };
-    @Test
-    public void printCookies() {
-        System.out.println(admin.user().fields().toPrettyString());
-        System.out.println(test.user().fields().toPrettyString());
-
-        System.out.println(admin.user().current());
-        System.out.println(test.user().current());
-
-
-        System.out.println(admin.user().get()
-                .withFilter(User.NAME.contains("ст"), User.ID.notIn(100))
-                .withSort(User.NAME).asc()
-                .get());
-        System.out.println(test.user().get().withFilter(User.NAME.contains("ст")).get());
-    }
+//    @Test
+//    public void printCookies() {
+//        System.out.println(admin.user().fields().toPrettyString());
+//        System.out.println(test.user().fields().toPrettyString());
+//
+//        System.out.println(admin.user().current());
+//        System.out.println(test.user().current());
+//
+//
+//        System.out.println(admin.user().get()
+//                .withFilter(User.NAME.contains("ст"), User.ID.notIn(100))
+//                .withSort(User.NAME).asc()
+//                .get());
+//        System.out.println(test.user().get().withFilter(User.NAME.contains("ст")).get());
+//    }
     @Test
     public void bruteForce() throws URISyntaxException, IOException, InterruptedException {
         HttpResponse<String> r = admin.invokeAjax(

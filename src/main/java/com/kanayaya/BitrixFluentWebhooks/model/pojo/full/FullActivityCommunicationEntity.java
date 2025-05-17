@@ -35,12 +35,4 @@ public class FullActivityCommunicationEntity extends ActivityCommunicationEntity
     */
     @JsonProperty("VALUE")
     private String value;
-
-    @Override
-    public <FULL extends ActivityCommunicationEntity> FULL getFull(BitrixRestClient client, Class<? extends FULL> clazz) {
-        if (clazz.equals(getClass())) {
-            return (FULL) this;
-        }
-        return super.getFull(client, clazz);
-    }
 }

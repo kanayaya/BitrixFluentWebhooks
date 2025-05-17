@@ -30,12 +30,4 @@ public class FullCatalogEntity extends CatalogEntity {
     */
     @JsonProperty("XML_ID")
     private String xmlId;
-
-    @Override
-    public <FULL extends CatalogEntity> FULL getFull(BitrixRestClient client, Class<? extends FULL> clazz) {
-        if (getClass().equals(clazz)) {
-            return (FULL) this;
-        }
-        return super.getFull(client, clazz);
-    }
 }

@@ -260,6 +260,4 @@ public class FullContactEntity extends ContactEntity {
     */
     @JsonProperty("LINK")
     private List<MultifieldItem<String>> link;
-
-
 }

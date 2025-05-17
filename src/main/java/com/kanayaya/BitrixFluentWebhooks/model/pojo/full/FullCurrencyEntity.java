@@ -68,9 +68,4 @@ public class FullCurrencyEntity extends CurrencyEntity {
     */
     @JsonProperty("DECIMALS")
     private Integer decimals;
-
-    @Override
-    public FullCurrencyEntity getFull(BitrixRestClient client) {
-        return this;
-    }
 }

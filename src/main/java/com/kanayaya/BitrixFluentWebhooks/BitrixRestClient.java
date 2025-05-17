@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kanayaya.BitrixFluentWebhooks.api.Method;
-import com.kanayaya.BitrixFluentWebhooks.api.methods.user.UserMethods;
 import com.kanayaya.BitrixFluentWebhooks.exceptions.BitrixException;
 import com.kanayaya.BitrixFluentWebhooks.exceptions.ExceptionHandler;
 import com.kanayaya.BitrixFluentWebhooks.model.jackson.ObjectMapperUtils;
@@ -42,9 +41,5 @@ public interface BitrixRestClient {
         } catch (JsonProcessingException e) {
             throw new BitrixException("Server response doesn't match json rules", e);
         }
-    }
-
-    default UserMethods user() {
-        return new UserMethods(this);
     }
 }

@@ -213,9 +213,4 @@ public class FullQuoteEntity extends QuoteEntity {
     */
     @JsonProperty("LAST_ACTIVITY_BY")
     private UserEntity lastActivityBy;
-
-    @Override
-    public FullQuoteEntity getFull(BitrixRestClient client) {
-        return this;
-    }
 }

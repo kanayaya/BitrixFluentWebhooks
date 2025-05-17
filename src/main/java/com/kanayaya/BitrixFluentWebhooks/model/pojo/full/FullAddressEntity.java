@@ -70,12 +70,4 @@ public class FullAddressEntity extends AddressEntity {
     */
     @JsonProperty("ANCHOR_ID")
     private Integer anchorId;
-
-    @Override
-    public <FULL extends AddressEntity> FULL getFull(BitrixRestClient client, Class<? extends FULL> clazz) {
-        if (getClass().equals(clazz)) {
-            return (FULL) this;
-        }
-        return super.getFull(client, clazz);
-    }
 }

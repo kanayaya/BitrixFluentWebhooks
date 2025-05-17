@@ -25,9 +25,4 @@ public class FullEnumEntity extends EnumEntity {
     */
     @JsonProperty("SYMBOL_CODE_SHORT")
     private String symbolCodeShort;
-
-    @Override
-    public FullEnumEntity getFull(BitrixRestClient client) {
-        return this;
-    }
 }

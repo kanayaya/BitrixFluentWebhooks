@@ -293,12 +293,6 @@ public class FullCompanyEntity extends CompanyEntity {
     private List<MultifieldItem<String>> link;
 
     @Override
-    public <FULL extends CompanyEntity> FULL getFull(BitrixRestClient client, Class<? extends FULL> clazz) {
-        if (getClass().equals(clazz)) return (FULL) this;
-        return super.getFull(client, clazz);
-    }
-
-    @Override
     public String toString() {
         return "FullCompanyEntity{" +
                 "id=" + id +

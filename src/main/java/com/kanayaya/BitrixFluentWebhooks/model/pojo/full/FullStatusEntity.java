@@ -56,9 +56,4 @@ public class FullStatusEntity extends StatusEntity {
     */
     @JsonProperty("SEMANTICS")
     private YN semantics;
-
-    @Override
-    public FullStatusEntity getFull(BitrixRestClient client) {
-        return this;
-    }
 }

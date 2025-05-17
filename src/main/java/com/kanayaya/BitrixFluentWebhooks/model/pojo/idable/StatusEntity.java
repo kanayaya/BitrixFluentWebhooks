@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.pojo.full.FullStatusEntity;
 
-public class StatusEntity implements Entity<StatusEntity, FullStatusEntity, String> {
+public class StatusEntity implements Entity<String> {
     @JsonProperty("STATUS_ID")
     private String statusId;
     public StatusEntity() {
@@ -21,15 +21,4 @@ public class StatusEntity implements Entity<StatusEntity, FullStatusEntity, Stri
     public boolean delete(BitrixRestClient client) {
         return false;
     }
-
-    @Override
-    public <ALT extends StatusEntity> ALT getFull(BitrixRestClient client, Class<? extends ALT> clazz) {
-        return null;
-    }
-
-    @Override
-    public FullStatusEntity getFull(BitrixRestClient client) {
-        return null;
-    }
-
 }

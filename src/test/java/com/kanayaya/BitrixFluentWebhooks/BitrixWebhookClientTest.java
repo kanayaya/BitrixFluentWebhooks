@@ -37,9 +37,5 @@ public class BitrixWebhookClientTest {
         assertEquals(TEST_CLIENT.host(), "localhost");
         assertNotNull(TEST_CLIENT.token());
     }
-    @Test
-    public void testGet() {
-        System.out.println(TEST_CLIENT.user().current());
-    }
 
 }

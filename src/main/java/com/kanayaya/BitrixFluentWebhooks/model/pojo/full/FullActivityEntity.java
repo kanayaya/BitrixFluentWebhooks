@@ -1,5 +1,6 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
@@ -129,6 +130,7 @@ public class FullActivityEntity extends ActivityEntity {
     * Создал
     */
     @JsonProperty("AUTHOR_ID")
+    @JsonIdentityReference(alwaysAsId = true)
     private UserEntity authorId;
     /**
     * Дата изменения
@@ -225,12 +227,4 @@ public class FullActivityEntity extends ActivityEntity {
     */
     @JsonProperty("IS_INCOMING_CHANNEL")
     private YN isIncomingChannel;
-
-    @Override
-    public <FULL extends ActivityEntity> FULL getFull(BitrixRestClient client, Class<? extends FULL> clazz) {
-        if (getClass().equals(clazz)) {
-            return (FULL) this;
-        }
-        return super.getFull(client, clazz);
-    }
 }

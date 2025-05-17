@@ -1,8 +1,6 @@
 package com.kanayaya.BitrixFluentWebhooks.model.pojo.full;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.model.bitrixTypes.enums.Timeman;
@@ -15,6 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "ID"
+)
 public class FullUserEntity extends UserEntity {
     private final Map<String, JsonNode> unrecognizedProperties = new HashMap<>();
     @JsonProperty("ACTIVE")
@@ -121,10 +123,6 @@ public class FullUserEntity extends UserEntity {
     private String uf_phone_inner;
     @JsonProperty("USER_TYPE")
     private String user_type;
-    @Override
-    public FullUserEntity getFull(BitrixRestClient client) {
-        return this;
-    }
     @JsonAnySetter
     protected void setUnrecognizedProperty(String key, JsonNode value) {
         unrecognizedProperties.put(key, value);

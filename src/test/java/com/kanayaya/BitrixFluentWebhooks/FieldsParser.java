@@ -210,12 +210,6 @@ public class FieldsParser {
     }
 
     @Test
-    public void userFields() {
-        FullUserEntity userEntity = TEST_CLIENT.user().get().withFilter(User.ID.eq(1)).get().get(0);
-        System.out.println(userEntity);
-        System.out.println(TEST_CLIENT.user().get().withAdminMode(true).all());
-    }
-    @Test
     public void printEnums() throws IOException {
         final List<Method> enumFields = List.of(
                 Method.CRM_ENUM_OWNERTYPE,

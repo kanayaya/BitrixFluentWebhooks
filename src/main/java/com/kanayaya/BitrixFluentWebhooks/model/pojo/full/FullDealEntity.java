@@ -223,9 +223,4 @@ public class FullDealEntity extends DealEntity {
     */
     @JsonProperty("LAST_ACTIVITY_BY")
     private UserEntity lastActivityBy;
-
-    @Override
-    public FullDealEntity getFull(BitrixRestClient client) {
-        return this;
-    }
 }
