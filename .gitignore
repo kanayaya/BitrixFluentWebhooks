@@ -27,3 +27,5 @@ replay_pid*
 **/pass*.*
 .idea/**
 target/**
+z-generated/**
+z_generated/**
