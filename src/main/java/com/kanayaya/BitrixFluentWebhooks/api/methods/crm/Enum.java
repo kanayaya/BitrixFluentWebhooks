@@ -1,16 +1,18 @@
 package com.kanayaya.BitrixFluentWebhooks.api.methods.crm;
 
 import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
+import com.kanayaya.BitrixFluentWebhooks.api.methods.crm.anEnum.Entityeditor;
 import com.kanayaya.BitrixFluentWebhooks.api.methods.crm.anEnum.Settings;
-
 
 public class Enum {
     public final Settings settings;
+    public final Entityeditor entityeditor;
     private final BitrixRestClient client;
 
     public Enum(BitrixRestClient client) {
         this.client = client;
         settings = new Settings(client);
+        entityeditor = new Entityeditor(client);
     }
 
     // public void activitypriority() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#CRM_ENUM_ACTIVITYPRIORITY

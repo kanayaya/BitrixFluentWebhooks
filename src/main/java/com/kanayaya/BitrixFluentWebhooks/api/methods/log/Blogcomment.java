@@ -12,4 +12,5 @@ public class Blogcomment {
     }
 
     // public void add() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LOG_BLOGCOMMENT_ADD
+    // public void delete() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LOG_BLOGCOMMENT_DELETE
 }

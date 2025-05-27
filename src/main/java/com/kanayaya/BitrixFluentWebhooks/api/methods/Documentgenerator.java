@@ -20,5 +20,5 @@ public class Documentgenerator {
         numerator = new Numerator(client);
     }
 
-
+    // public void stub() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#DOCUMENTGENERATOR_STUB
 }

@@ -11,5 +11,6 @@ public class Status {
         this.client = client;
     }
 
+    // public void get() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#MESSAGESERVICE_MESSAGE_STATUS_GET
     // public void update() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#MESSAGESERVICE_MESSAGE_STATUS_UPDATE
 }

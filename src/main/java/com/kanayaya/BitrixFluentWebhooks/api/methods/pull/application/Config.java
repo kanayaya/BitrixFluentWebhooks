@@ -1,0 +1,15 @@
+package com.kanayaya.BitrixFluentWebhooks.api.methods.pull.application;
+
+import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
+
+
+public class Config {
+    private final BitrixRestClient client;
+
+
+    public Config(BitrixRestClient client) {
+        this.client = client;
+    }
+
+    // public void get() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#PULL_APPLICATION_CONFIG_GET
+}

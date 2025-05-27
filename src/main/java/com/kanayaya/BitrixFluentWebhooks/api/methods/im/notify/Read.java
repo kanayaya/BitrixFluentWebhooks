@@ -11,5 +11,6 @@ public class Read {
         this.client = client;
     }
 
+    // public void all() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_NOTIFY_READ_ALL
     // public void list() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_NOTIFY_READ_LIST
 }

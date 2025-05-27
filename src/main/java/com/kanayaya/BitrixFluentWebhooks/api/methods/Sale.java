@@ -5,7 +5,6 @@ import com.kanayaya.BitrixFluentWebhooks.api.methods.sale.*;
 
 public class Sale {
     public final TradeBinding tradeBinding;
-    public final BasketItem basketitem;
     public final StatusLang statusLang;
     public final Propertyvalue propertyvalue;
     public final Persontype persontype;
@@ -13,7 +12,6 @@ public class Sale {
     public final Property property;
     public final Payment payment;
     public final TradePlatform tradePlatform;
-    public final BasketProperties basketproperties;
     public final Shipmentproperty shipmentproperty;
     public final PaymentItemShipment paymentItemShipment;
     public final Order order;
@@ -23,6 +21,7 @@ public class Sale {
     public final Paysystem paysystem;
     public final Propertygroup propertygroup;
     public final Shipmentitem shipmentitem;
+    public final Ofd ofd;
     public final Cashbox cashbox;
     public final PropertyRelation propertyRelation;
     public final BasketProperties basketProperties;
@@ -34,7 +33,6 @@ public class Sale {
     public Sale(BitrixRestClient client) {
         this.client = client;
         tradeBinding = new TradeBinding(client);
-        basketitem = new BasketItem(client);
         statusLang = new StatusLang(client);
         propertyvalue = new Propertyvalue(client);
         persontype = new Persontype(client);
@@ -42,7 +40,6 @@ public class Sale {
         property = new Property(client);
         payment = new Payment(client);
         tradePlatform = new TradePlatform(client);
-        basketproperties = new BasketProperties(client);
         shipmentproperty = new Shipmentproperty(client);
         paymentItemShipment = new PaymentItemShipment(client);
         order = new Order(client);
@@ -52,6 +49,7 @@ public class Sale {
         paysystem = new Paysystem(client);
         propertygroup = new Propertygroup(client);
         shipmentitem = new Shipmentitem(client);
+        ofd = new Ofd(client);
         cashbox = new Cashbox(client);
         propertyRelation = new PropertyRelation(client);
         basketProperties = new BasketProperties(client);

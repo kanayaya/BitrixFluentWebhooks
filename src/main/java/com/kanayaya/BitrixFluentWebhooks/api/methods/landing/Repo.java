@@ -11,6 +11,9 @@ public class Repo {
         this.client = client;
     }
 
+    // public void getappinfo() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_REPO_GETAPPINFO
+    // public void bind() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_REPO_BIND
+    // public void unbind() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_REPO_UNBIND
     // public void getList() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_REPO_GETLIST
     // public void checkContent() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_REPO_CHECKCONTENT
     // public void unregister() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_REPO_UNREGISTER

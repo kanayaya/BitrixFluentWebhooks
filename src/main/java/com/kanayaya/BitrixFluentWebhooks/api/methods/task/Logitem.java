@@ -11,5 +11,6 @@ public class Logitem {
         this.client = client;
     }
 
+    // public void getmanifest() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#TASK_LOGITEM_GETMANIFEST
     // public void list() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#TASK_LOGITEM_LIST
 }

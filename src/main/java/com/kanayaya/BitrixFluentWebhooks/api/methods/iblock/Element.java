@@ -11,6 +11,6 @@ public class Element {
         this.client = client;
     }
 
-    // public void get() {}  {@link com.kanayaya.BitrixFluentWebhooks.api.Method#IBLOCK_ELEMENT_GET}
+    // public void get() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IBLOCK_ELEMENT_GET
     // public void list() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IBLOCK_ELEMENT_LIST
 }

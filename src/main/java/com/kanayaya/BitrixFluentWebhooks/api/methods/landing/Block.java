@@ -27,6 +27,8 @@ public class Block {
     // public void changeNodeName() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_BLOCK_CHANGENODENAME
     // public void removecard() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_BLOCK_REMOVECARD
     // public void uploadfile() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_BLOCK_UPLOADFILE
+    // public void publication() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_BLOCK_PUBLICATION
     // public void updateattrs() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_BLOCK_UPDATEATTRS
     // public void getContentFromRepository() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_BLOCK_GETCONTENTFROMREPOSITORY
+    // public void getassetsconfig() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_BLOCK_GETASSETSCONFIG
 }

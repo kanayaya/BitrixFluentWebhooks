@@ -2,12 +2,14 @@ package com.kanayaya.BitrixFluentWebhooks.api.methods.crm;
 
 import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.api.methods.crm.item.Delivery;
+import com.kanayaya.BitrixFluentWebhooks.api.methods.crm.item.Details;
 import com.kanayaya.BitrixFluentWebhooks.api.methods.crm.item.Payment;
 import com.kanayaya.BitrixFluentWebhooks.api.methods.crm.item.Productrow;
 
 public class Item {
     public final Delivery delivery;
     public final Productrow productrow;
+    public final Details details;
     public final Payment payment;
     private final BitrixRestClient client;
 
@@ -15,6 +17,7 @@ public class Item {
         this.client = client;
         delivery = new Delivery(client);
         productrow = new Productrow(client);
+        details = new Details(client);
         payment = new Payment(client);
     }
 

@@ -12,8 +12,8 @@ public class BasketProperties {
     }
 
     // public void get() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#SALE_BASKETPROPERTIES_GET
-   // public void getFields() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#SALE_BASKETPROPERTIES_GETFIELDS
-// public void update() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#SALE_BASKETPROPERTIES_UPDATE
-// public void list() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#SALE_BASKETPROPERTIES_LIST
-// public void delete() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#SALE_BASKETPROPERTIES_DELETE
+    // public void getFields() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#SALE_BASKETPROPERTIES_GETFIELDS
+    // public void update() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#SALE_BASKETPROPERTIES_UPDATE
+    // public void list() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#SALE_BASKETPROPERTIES_LIST
+    // public void delete() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#SALE_BASKETPROPERTIES_DELETE
 }

@@ -2,13 +2,16 @@ package com.kanayaya.BitrixFluentWebhooks.api.methods.crm;
 
 import com.kanayaya.BitrixFluentWebhooks.BitrixRestClient;
 import com.kanayaya.BitrixFluentWebhooks.api.methods.crm.status.Entity;
+import com.kanayaya.BitrixFluentWebhooks.api.methods.crm.status.Extra;
 
 public class Status {
+    public final Extra extra;
     public final Entity entity;
     private final BitrixRestClient client;
 
     public Status(BitrixRestClient client) {
         this.client = client;
+        extra = new Extra(client);
         entity = new Entity(client);
     }
 

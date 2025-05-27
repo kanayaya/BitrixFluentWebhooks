@@ -33,5 +33,5 @@ public class Im {
         notify = new Notify(client);
     }
 
-
+    // public void notify() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_NOTIFY_PERSONAL_ADD
 }

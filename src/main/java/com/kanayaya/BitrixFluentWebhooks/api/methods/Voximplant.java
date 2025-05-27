@@ -13,8 +13,10 @@ public class Voximplant {
     public final User user;
     public final Infocall infocall;
     public final Url url;
+    private final BitrixRestClient client;
 
     public Voximplant(BitrixRestClient client) {
+        this.client = client;
         statistic = new Statistic(client);
         tts = new Tts(client);
         line = new Line(client);

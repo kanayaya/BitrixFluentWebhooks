@@ -14,6 +14,8 @@ public class Chat {
 
     // public void updateAvatar() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_CHAT_UPDATEAVATAR
     // public void add() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_CHAT_ADD
+    // public void getentitychat() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_CHAT_GETENTITYCHAT
+    // public void setmanager() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_CHAT_SETMANAGER
     // public void leave() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_CHAT_LEAVE
     // public void get() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_CHAT_GET
     // public void mute() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_CHAT_MUTE

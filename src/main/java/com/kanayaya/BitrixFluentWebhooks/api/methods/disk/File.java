@@ -13,6 +13,7 @@ public class File {
 
     // public void copyto() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#DISK_FILE_COPYTO
     // public void uploadversion() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#DISK_FILE_UPLOADVERSION
+    // public void listallowedoperations() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#DISK_FILE_LISTALLOWEDOPERATIONS
     // public void restore() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#DISK_FILE_RESTORE
     // public void rename() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#DISK_FILE_RENAME
     // public void get() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#DISK_FILE_GET

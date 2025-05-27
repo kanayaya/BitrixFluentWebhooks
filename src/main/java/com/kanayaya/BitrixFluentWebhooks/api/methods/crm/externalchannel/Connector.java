@@ -12,5 +12,7 @@ public class Connector {
     }
 
     // public void unregister() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#CRM_EXTERNALCHANNEL_CONNECTOR_UNREGISTER
+    // public void list() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#CRM_EXTERNALCHANNEL_CONNECTOR_LIST
+    // public void fields() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#CRM_EXTERNALCHANNEL_CONNECTOR_FIELDS
     // public void register() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#CRM_EXTERNALCHANNEL_CONNECTOR_REGISTER
 }

@@ -13,6 +13,7 @@ public class Event {
     }
 
     // public void bind() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#EVENT_BIND
+    // public void test() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#EVENT_TEST
     // public void unbind() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#EVENT_UNBIND
     // public void get() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#EVENT_GET
 }

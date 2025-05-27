@@ -11,5 +11,6 @@ public class Option {
         this.client = client;
     }
 
-    // public void *() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#USER_OPTION_ANY
+    // public void set() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#USER_OPTION_SET
+    // public void get() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#USER_OPTION_GET
 }

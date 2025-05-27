@@ -7,7 +7,6 @@ import com.kanayaya.BitrixFluentWebhooks.api.methods.telephony.ExternalLine;
 
 public class Telephony {
     public final Call call;
-    public final ExternalCall externalcall;
     public final ExternalCall externalCall;
     public final ExternalLine externalLine;
     private final BitrixRestClient client;
@@ -15,7 +14,6 @@ public class Telephony {
     public Telephony(BitrixRestClient client) {
         this.client = client;
         call = new Call(client);
-        externalcall = new ExternalCall(client);
         externalCall = new ExternalCall(client);
         externalLine = new ExternalLine(client);
     }

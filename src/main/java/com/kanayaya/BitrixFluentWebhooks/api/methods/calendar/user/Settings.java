@@ -12,4 +12,5 @@ public class Settings {
     }
 
     // public void set() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#CALENDAR_USER_SETTINGS_SET
+    // public void get() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#CALENDAR_USER_SETTINGS_GET
 }

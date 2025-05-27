@@ -13,4 +13,5 @@ public class Chat {
     }
 
     // public void get() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IMOPENLINES_CRM_CHAT_GET
+    // public void getlastid() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IMOPENLINES_CRM_CHAT_GETLASTID
 }

@@ -12,4 +12,5 @@ public class Planner {
     }
 
     // public void getlist() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#TASK_PLANNER_GETLIST
+    // public void getcurrenttaskslist() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#TASK_PLANNER_GETCURRENTTASKSLIST
 }

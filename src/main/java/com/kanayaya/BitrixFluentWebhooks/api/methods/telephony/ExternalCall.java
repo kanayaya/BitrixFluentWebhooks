@@ -13,6 +13,6 @@ public class ExternalCall {
 
     // public void attachRecord() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#TELEPHONY_EXTERNALCALL_ATTACHRECORD
     // public void searchCrmEntities() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#TELEPHONY_EXTERNALCALL_SEARCHCRMENTITIES
-    // public void telephonyExternalcallFinish() a.BitrixFluentWebhooks.api.Method#TELEPHONY_EXTERNALCALL_FINISH
+    // public void finish() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#TELEPHONY_EXTERNALCALL_FINISH
     // public void register() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#TELEPHONY_EXTERNALCALL_REGISTER
 }

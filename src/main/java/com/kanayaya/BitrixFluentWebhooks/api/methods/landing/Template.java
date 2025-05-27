@@ -12,4 +12,8 @@ public class Template {
     }
 
     // public void getlist() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_TEMPLATE_GETLIST
+    // public void getlandingref() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_TEMPLATE_GETLANDINGREF
+    // public void getsiteref() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_TEMPLATE_GETSITEREF
+    // public void setlandingref() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_TEMPLATE_SETLANDINGREF
+    // public void setsiteref() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#LANDING_TEMPLATE_SETSITEREF
 }

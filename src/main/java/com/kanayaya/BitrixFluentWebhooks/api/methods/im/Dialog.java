@@ -20,5 +20,6 @@ public class Dialog {
 
     // public void read() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_DIALOG_READ
     // public void unread() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_DIALOG_UNREAD
+    // public void get() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_DIALOG_GET
     // public void writing() {}  com.kanayaya.BitrixFluentWebhooks.api.Method#IM_DIALOG_WRITING
 }
